@@ -140,8 +140,7 @@ const createControls = (citySearch) => {
 }
 
 $(() => {
-
-let citySearch = ''
+let citySearch = new SearchCity()
 createUI(12)
 createControls(citySearch)
 
