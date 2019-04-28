@@ -32,7 +32,7 @@ const createUI = (numOfSlices) => {
   //Looping here to create the inner wheel elements
   //That we will construct into selectable slices
   for(let i = 0; i < numOfSlices; i++) {
-    $(`<li>`).appendTo(`#inner`)
+    $(`<li>`).appendTo(`#inner-wheel`)
     const $selectLiTag = $('li').eq(i)
     $(`<div>`).addClass(`wheel-slice`).text(`${i}`).appendTo($selectLiTag)
   }
