@@ -2,7 +2,6 @@
 /// Lets create the Front End UI //
 //////////////////////////////////
 
-
 const createUI = (numOfSlices) => {
 
   //////////////////////////
@@ -27,10 +26,10 @@ const createUI = (numOfSlices) => {
   /// Lets Begin Constructing Our Wheel /////
   //////////////////////////////////////////
 
-  //Creating ul element that will container our inner wheel
+  //Creating ul element that will contain our inner wheel
   $(`<ul>`).attr(`id`, `inner-wheel`).addClass(`the-wheel`).appendTo(`main .flex-container`)
   //Looping here to create the inner wheel elements
-  //That we will construct into selectable slices
+  //This we will construct into selectable slices
   for(let i = 0; i < numOfSlices; i++) {
     $(`<li>`).appendTo(`#inner-wheel`)
     const $selectLiTag = $('li').eq(i)
@@ -73,8 +72,70 @@ const createUI = (numOfSlices) => {
     .appendTo(`.foot-left`)
 }
 
+////////////////////////////////////////////////////
+/// Creating Button Controls & Event Listeners /////
+///////////////////////////////////////////////////
+
+const createControls = (citySearch) => {
+
+  /////////////////////////////////////////////
+  /// Creating Form For City Search //////////
+  ////////////////////////////////////////////
+  $(`<form>`).appendTo(`.head-mid`)
+  $(`<input>`).attr(`id`, `inputBox`).attr(`type`, `text`).attr(`value`, ``).attr(`placeholder`, `Enter Your City`)
+    .appendTo(`form`)
+
+    //////////////////////////
+    /// Form Submission /////
+    ////////////////////////
+
+  //Create input button for form
+  $(`<button>`).attr(`id`, `inputButton`).attr(`type`, `submit`).attr(`value`, `submit`).text(`Load Your City`)
+    .on(`click`, (event) => {
+      //findCity() method located in our SearchCity class triggering our api call
+      citySearch.findCity(event)
+      //Trigger music playback when user begins search
+      $(`#musicMain`).trigger('play')
+
+    }).appendTo(`.head-right`)
+
+    /////////////////////////
+    /// Audio Controls /////
+    ///////////////////////
+
+  //Create button for overall audio control global mute on or off
+  $(`<button>`).attr(`id`, `muteAudio`).text(`Mute Audio`)
+    .on(`click`, () => {
+      const muteAudio = document.getElementById("musicMain")
+
+      if( muteAudio.muted !== true) {
+          muteAudio.muted = true
+      } else {
+          muteAudio.muted = false
+      } })
+    .appendTo(`.foot-left`)
+
+    //////////////////////////////
+    /// Reset Search & Wheel /////
+    /////////////////////////////
+
+  //Create button to reset the search query & wheel
+  $(`<button>`).attr(`id`, `wheelReset`).text(`Reset Wheel`).on(`click`, () => { resetSearch(citySearch) })
+    .appendTo(`.foot-mid`)
+
+    ///////////////////////
+    /// Modal Control/////
+    /////////////////////
+
+  //Create button for modal control
+  $(`<button>`).attr(`id`, `modalControl`).text(`Modal Control`).on(`click`, () => { alert(`Modal Control`) })
+    .appendTo(`.foot-right`)
+}
+
 $(() => {
 
+let citySearch = ''
 createUI(12)
+createControls(citySearch)
 
 })
