@@ -8,8 +8,9 @@ const createUI = (numOfSlices) => {
   /// Creating Header /////
   ////////////////////////
 
-  $(`<div>`).addClass(`flex-head`).addClass(`head-left`).text(`Food Fortune`)
-  .appendTo($(`<div>`).addClass(`flex-header`).appendTo(`header`))
+  $(`<div>`).addClass(`flex-head`).addClass(`head-left`)
+    .appendTo($(`<div>`).addClass(`flex-header`).appendTo(`header`))
+  $(`<h1>`).text(`Food And Fortune`).appendTo(`.head-left`)
 
   $(`<div>`).addClass(`flex-head`).addClass(`head-mid`).appendTo(`.flex-header`)
   $(`<div>`).addClass(`flex-head`).addClass(`head-right`).appendTo(`.flex-header`)
@@ -96,7 +97,7 @@ const createControls = (citySearch) => {
     ////////////////////////
 
   //Create input button for form
-  $(`<button>`).attr(`id`, `inputButton`).attr(`type`, `submit`).attr(`value`, `submit`).text(`Load Your City`)
+  $(`<button>`).attr(`id`, `inputButton`).attr(`type`, `submit`).attr(`value`, `submit`).text(`Load City`)
     .on(`click`, (event) => {
       //findCity() method located in our SearchCity class triggering our api call
       citySearch.findCity(event)
