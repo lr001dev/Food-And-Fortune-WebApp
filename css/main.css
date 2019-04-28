@@ -43,6 +43,86 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}</pre></body></html>
+}
 
 /* APP CSS STARTS HERE */
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 5em;
+  top: 0;
+  background-color: white;
+  border-bottom: 1px black solid;
+  padding: 0;
+  z-index: 10;
+}
+body {
+  background-image: linear-gradient(to top, #b3ffab 0%, #12fff7 100%);
+}
+main {
+  margin-top: 3em;
+  height: 49.9em;
+}
+footer {
+  display: block;
+  background-color: white;
+  width: 100%;
+  height: 4em;
+}
+.flex-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.flex-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-head, .flex-foot {
+  border: 1px solid black;
+  width: 33%;
+  height: 4em;
+  padding:0;
+}
+
+h1, h2, h3, p {
+  font-family: 'Comfortaa', cursive;
+  border: none;
+}
+h1 {
+  font-size: 3em;
+}
+h2 {  font-size: 1.5em
+}
+h3 {
+  font-size: 1em
+}
+p {
+  font-size: .5em
+}
+.the-wheel {
+  position: relative;
+  width: 40em;
+  height: 40em;
+  border: 1px solid #FFDB00;
+  border-radius: 50%;
+  border-style: inset;
+  list-style: none;
+  overflow: hidden;
+  box-shadow: inset 0px 1px 5px 4px rgba(0,0,0,1);
+}
+#outter-wheel {
+  margin-top: -41em;
+  width: 41.8em;
+  height: 41.7em;
+  box-shadow: inset 0px 1px 20px 4px rgba(0,0,0,1);
+  z-index: -1;
+}

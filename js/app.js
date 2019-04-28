@@ -2,10 +2,13 @@
 /// Lets create the Front End UI //
 //////////////////////////////////
 
+
+const createUI = (numOfSlices) => {
+
   //////////////////////////
   /// Creating Header /////
   ////////////////////////
-  const createUI = (numOfSlices) => {
+
   $(`<div>`).addClass(`flex-head`).addClass(`head-left`).text(`Food Fortune`)
   .appendTo($(`<div>`).addClass(`flex-header`).appendTo(`header`))
 
@@ -25,7 +28,7 @@
   //////////////////////////////////////////
 
   //Creating ul element that will container our inner wheel
-  $(`<ul>`).attr(`id`, `inner`).addClass(`the-wheel`).appendTo(`main .flex-container`)
+  $(`<ul>`).attr(`id`, `inner-wheel`).addClass(`the-wheel`).appendTo(`main .flex-container`)
   //Looping here to create the inner wheel elements
   //That we will construct into selectable slices
   for(let i = 0; i < numOfSlices; i++) {
@@ -34,14 +37,14 @@
     $(`<div>`).addClass(`wheel-slice`).text(`${i}`).appendTo($selectLiTag)
   }
   //Create center of circle elements
-  $(`<div>`).addClass(`circle-button`).appendTo(`#inner`)
-  $(`<div>`).addClass(`circle-button-small`).appendTo(`#inner`)
-  $(`<div>`).addClass(`circle-button-tiny`).appendTo(`#inner`)
+  $(`<div>`).addClass(`circle-button`).appendTo(`#inner-wheel`)
+  $(`<div>`).addClass(`circle-button-small`).appendTo(`#inner-wheel`)
+  $(`<div>`).addClass(`circle-button-tiny`).appendTo(`#inner-wheel`)
 
-  //Create our orb pop up for restaurant display
+  //Create our orb pop up element for restaurant display
   $(`<div>`).addClass(`orb`).appendTo(`#inner`)
   //Create our outter wheel element
-  $(`<ul>`).addClass(`the-wheel`).addClass(`outter-wheel`).appendTo(`.flex-container`)
+  $(`<ul>`).attr(`id`, `outter-wheel`).addClass(`the-wheel`).appendTo(`.flex-container`)
 
   ///////////////////////////////////
   /// Creating Footer Elements /////
