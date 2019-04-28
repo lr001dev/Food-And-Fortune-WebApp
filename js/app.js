@@ -22,6 +22,12 @@ const createUI = (numOfSlices) => {
   $(`<div>`).addClass(`city`).appendTo(`main`)
   $(`<div>`).addClass(`flex-container`).appendTo(`main`)
 
+  //////////////////////////////////////
+  /// Creating Back Text Elements /////
+  ////////////////////////////////////
+  for(let i = 1; i <= 6; i++) {
+    $(`<div>`).attr(`id`, `back-text-${ i }`).addClass(`back-text`).text(`FOOD AND FORTUNE`).appendTo(`main`)
+  }
   ////////////////////////////////////////////
   /// Lets Begin Constructing Our Wheel /////
   //////////////////////////////////////////
