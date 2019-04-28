@@ -62,12 +62,12 @@ body {
 }
 main {
   margin-top: 3em;
-  height: 54em;
+  height: 49em;
 }
 footer {
   display: block;
   width: 100%;
-  height: 5em;
+  height: 5.1em;
   background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
   box-shadow: inset 0px 1px 5px 4px rgba(0,0,0,1);
   border-top: 1px black solid;
@@ -161,11 +161,13 @@ button:hover {
   position:relative;
   display: block;
   max-width: 50%;
-  margin: 3em auto;
+  margin: auto;
+  margin-top: 7.9em;
   height: 5em;
 }
-.city div {
-text-align: center;
+.city div h2 {
+  font-size: 3em;
+  text-align: center;
 }
 .the-wheel {
   position: relative;
@@ -282,14 +284,8 @@ li:nth-child(12) {
 }
 
 @media screen and (max-width: 720px) {
-  .the-wheel {
-    width: 30em;
-    height: 30em;
-  }
-  #outter-wheel {
-    margin-top: -31em;
-    width: 31.8em;
-    height: 31.7em;
+  main {
+    height: 48.6em;
   }
   form {
    margin-top: .5em;
@@ -299,27 +295,46 @@ li:nth-child(12) {
     padding-top: .7em;
     font-size: 1.2em;
   }
+  .city {
+    max-width: 100%;
+  }
+  .city div h2 {
+    font-size: 2em;
+  }
+  .the-wheel {
+    width: 30em;
+    height: 30em;
+  }
+  #outter-wheel {
+    margin-top: -31em;
+    width: 31.8em;
+    height: 31.7em;
+  }
+  footer {
+    height: 5.5em;
+  }
+
   #back-text-1 {
-    top: 4.8em;
-    left: 2.8em;
+    top: 4.9em;
+    left: 2.4em;
   }
   #back-text-2 {
     top: 17em;
     right: 0em;
   }
   #back-text-3 {
-    bottom: 6em;
-    left: 2.8em;
+    bottom: 4em;
+    left: 2.9em;
   }
   #back-text-4 {
-    bottom: 4em;
+    bottom: 3.2em;
     left: 0;
     font-size: 4em;
 
   }
   #back-text-5 {
     top: 50%;
-    left: 2.8em;
+    left: .5em;
   }
   button {
     font-size: 2em;
@@ -327,6 +342,9 @@ li:nth-child(12) {
   #inputButton {
     margin-top: .5em;
     font-size: 1.5em;
+  }
+  .city div h2 {
+
   }
 }
 @media screen and (max-width: 720px){

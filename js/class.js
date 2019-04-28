@@ -1,16 +1,75 @@
 ////////////////////////////////////////
-/// Lets create City Search Class /////
+/// Lets Create City Search Class /////
 //////////////////////////////////////
 
 class SearchCity {
   constructor(city) {
     this.cityName = ``
+    this.cityID = ``
     this.foodCollections = []
     this.restaurantSelection = []
   }
-  ////////////////////////////////////////////////////////////////////
-  /// Method To Simulating Rotation Of Wheel By Toggling Classes /////
-  ///////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  /// Method Connecting To Zomato API To Find City Id /////
+  ////////////////////////////////////////////////////////
+
+  //Connect to Zomato API and find city
+  findCity (event) {
+    const $doesDivExist = $(`.city div`)
+
+    if($doesDivExist.length === 0 ) {
+
+      ///////////////////////////////////
+      ////Lets Build Our Ajax Call To API
+      //////////////////////////////////
+
+      const baseURL = `https://developers.zomato.com/api/v2.1/cities?`
+      const apiKey = `apikey=6500da95eb7ae54c977d83022574f182`
+      const queryType = `q=`
+      const countQuery = `count=3`
+      //Grabbing value from input on form
+      let $loadCityQuery = $(`#inputBox`).val()
+      let $encodedCityQuery = encodeURI($(`#inputBox`).val())
+      //Constructing our ajax url
+      let queryURL = baseURL + apiKey + `&` + queryType + $encodedCityQuery + `&` + countQuery
+      console.log(queryURL)
+
+      /////////////////////////
+      ////Here's Our Ajax Call
+      ////////////////////////
+
+      $.ajax({
+        url: queryURL
+      }).then((cityResponse) => {
+        console.log(cityResponse)
+        //Add City name to SearchCity Instance
+        this.cityName = cityResponse.location_suggestions[0].name
+        // console.log(this.cityName)
+        this.cityID = cityResponse.location_suggestions[0].id
+        // console.log(this.cityID)
+        //Lets append the new city value into the DOM
+        $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
+
+      }, (error) => {
+        console.error(error)
+        alert(`No Results Found. Please Try Again.`)
+      })
+      //Clear previous spin
+      this.setupSpin(this.clearSpin)
+
+      //Reset Input box and prevent page refresh
+      $('.head-mid form').trigger('reset')
+      event.preventDefault()
+      // console.log(event)
+    } else if ($doesDivExist.length === 0  && this.cityName === undefined ) {
+        alert(`Please Enter Your City To Begin Your Food Search`)
+    } else {
+        alert(`Please Reset Your Seach Below`)
+    }
+  }
+  ////////////////////////////////////////////////////////////////////////
+  /// Method To Simulating Rotation Of Wheel By Toggling CSS Classes /////
+  ///////////////////////////////////////////////////////////////////////
 
   //Toggle classes to simulate spin in with 100ms intervals
   rotateSelector (currentLoop,selectTheSlice,callback) {
