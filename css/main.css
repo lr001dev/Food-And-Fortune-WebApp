@@ -323,7 +323,7 @@ li:nth-child(12) {
 
 @media screen and (max-width: 720px) {
   main {
-    height: auto;
+    height: 2000px;
   }
   form {
    margin-top: .5em;
