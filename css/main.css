@@ -293,7 +293,30 @@ li:nth-child(12) {
   margin-top: 1em;
   border: 1px solid white;
 }
+.circle-button {
+  position: absolute;
+  top: 18.8em;
+  margin: 0 46.9%;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background-color: white;
+  /* transition: transform 1s; */
+  text-align: center;
+  align-items: center;
+  /* color: white; */
+  z-index: 1;
+}
+.fa, .far, .fas {
+  font-size: 2em;
+  color:  #f9d423;
+}
+.fas:hover {
+  transform: scale(1.5);
+}
+.circle-button:hover {
 
+}
 @media screen and (max-width: 720px) {
   main {
     height: 48.6em;

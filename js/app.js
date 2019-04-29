@@ -99,13 +99,22 @@ const createControls = (citySearch, numOfCollections) => {
   //Create input button for form
   $(`<button>`).attr(`id`, `inputButton`).attr(`type`, `submit`).attr(`value`, `submit`).text(`Load City`)
     .on(`click`, (event) => {
-      // findCity() method located in our SearchCity class triggering our api call
-      // Also passing loadCityCollections() method as a callback
-      // that will make our 2nd API Call to retrieve City's Food Collections
-      citySearch.findCity(event, citySearch.loadCityCollections, numOfCollections, citySearch)
-      //Trigger music playback when user begins search
-      $(`#musicMain`).trigger('play')
 
+      const $doesDivExist = $(`.city div`)
+      if($doesDivExist.length === 0 ) {
+        
+        // findCity() method located in our SearchCity class triggering our api call
+        // Also passing loadCityCollections() method as a callback
+        // that will make our 2nd API Call to retrieve City's Food Collections
+        citySearch.findCity(event, citySearch.loadCityCollections, numOfCollections, citySearch)
+
+        //Trigger music playback when user begins search
+        $(`#musicMain`).trigger('play')
+      } else if ($doesDivExist.length === 0  && this.cityName === undefined ) {
+          alert(`Please Enter Your City To Begin Your Food Search`)
+      } else {
+        alert(`Please Reset Your Seach Below`)
+      }
     }).appendTo(`.head-right`)
 
     /////////////////////////

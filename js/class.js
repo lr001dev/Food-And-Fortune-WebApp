@@ -17,9 +17,9 @@ class SearchCity {
 
   //Connect to Zomato API and find city
   findCity (event, getCityFoodCollections, totalCollections, theCurrentInstance) {
-    const $doesDivExist = $(`.city div`)
+    // const $doesDivExist = $(`.city div`)
 
-    if($doesDivExist.length === 0 ) {
+    // if($doesDivExist.length === 0 ) {
 
       ///////////////////////////////////
       ////Lets Build Our Ajax Call To API
@@ -62,17 +62,18 @@ class SearchCity {
       })
       // console.log(this.cityName)
       //Clear previous spin
-      this.setupSpin(this.clearSpin)
+      // this.setupSpin(this.clearSpin)
+      this.setupSpin()
 
       //Reset Input box and prevent page refresh
       $('.head-mid form').trigger('reset')
       event.preventDefault()
       // console.log(event)
-    } else if ($doesDivExist.length === 0  && this.cityName === undefined ) {
-        alert(`Please Enter Your City To Begin Your Food Search`)
-    } else {
-        alert(`Please Reset Your Seach Below`)
-    }
+    // } else if ($doesDivExist.length === 0  && this.cityName === undefined ) {
+    //     alert(`Please Enter Your City To Begin Your Food Search`)
+    // } else {
+    //     alert(`Please Reset Your Seach Below`)
+    // }
   }
   ////////////////////////////////////////////////////////
   /// Method Connecting To Zomato API To Find City /////
@@ -219,11 +220,11 @@ class SearchCity {
   //Lets trigger the spin
   setupSpin () {
     //Create click listener for beginning spin
-    $(`.circle-button`).text(`S`).on(`click`, () => {
+    $(`.circle-button`).on(`click`, () => {
       //Lets spin the wheel
       this.spinWheel(this.calculateSelections(),this.rotateSelector)
       this.clearSpin()
-    })
+    }).append($(`<i>`).attr(`class`, `fas fa-sync-alt`))
   }
   ///////////////////////////////////////////
   /// Method To Clear The Current Spin /////
