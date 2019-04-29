@@ -8,6 +8,7 @@ class SearchCity {
     this.cityID = ``
     this.foodCollections = []
     this.chosenFoodCollectionsIndexes = []
+    this.foodCollectionsIDs = []
     this.restaurantSelection = []
   }
   //////////////////////////////////////////////////////////
@@ -141,19 +142,24 @@ class SearchCity {
   createWheelFoodCategories (foodCollections, arrayOfChosenIndexes) {
     this.foodCollections = foodCollections
     this.chosenFoodCollectionsIndexes = arrayOfChosenIndexes
-    console.log(`Array Of Collections ` + this.foodCollections)
-    console.log(`Array Of Chosen Indexes ` + this.chosenFoodCollectionsIndexes)
+
+    //console.log(`Array Of Collections ` + this.foodCollections)
+    //console.log(`Array Of Chosen Indexes ` + this.chosenFoodCollectionsIndexes)
+
     for(let i = 0; i < this.chosenFoodCollectionsIndexes.length; i++) {
+      let collectionIndex = this.chosenFoodCollectionsIndexes[i]
+      this.foodCollectionsIDs.push(this.foodCollections[collectionIndex].collection_id)
+
       $(`.wheel-slice`).eq(i).text(``)
         .append( $(`<p>`)
-        .text(` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title } `) )
+        .text(` ${ this.foodCollections[collectionIndex].title } `) )
         .append( $(`<div>`).attr(`class`, `wheel-image`)
-        .append( $(`<img>`).attr(`src`, ` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].image_url } `)
+        .append( $(`<img>`).attr(`src`, ` ${ this.foodCollections[collectionIndex].image_url } `)
         .css(`width`, `3.5em`).css(`height`, `3.5em`).css(`border-radius`, `50%`) ) )
-
       // ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title }
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
+    console.log(this.foodCollectionsIDs)
   }
   ////////////////////////////////////////////////////////////////////////
   /// Method To Simulating Rotation Of Wheel By Toggling CSS Classes /////
