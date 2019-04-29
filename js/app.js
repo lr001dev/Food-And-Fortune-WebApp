@@ -83,7 +83,7 @@ const createUI = (numOfSlices) => {
 /// Creating Button Controls & Event Listeners /////
 ///////////////////////////////////////////////////
 
-const createControls = (citySearch) => {
+const createControls = (citySearch, numOfCollections) => {
 
   /////////////////////////////////////////////
   /// Creating Form For City Search //////////
@@ -99,8 +99,10 @@ const createControls = (citySearch) => {
   //Create input button for form
   $(`<button>`).attr(`id`, `inputButton`).attr(`type`, `submit`).attr(`value`, `submit`).text(`Load City`)
     .on(`click`, (event) => {
-      //findCity() method located in our SearchCity class triggering our api call
-      citySearch.findCity(event)
+      // findCity() method located in our SearchCity class triggering our api call
+      // Also passing loadCityCollections() method as a callback
+      // that will make our 2nd API Call to retrieve City's Food Collections
+      citySearch.findCity(event, citySearch.loadCityCollections, numOfCollections, citySearch)
       //Trigger music playback when user begins search
       $(`#musicMain`).trigger('play')
 
@@ -141,7 +143,10 @@ const createControls = (citySearch) => {
 
 $(() => {
 let citySearch = new SearchCity()
-createUI(12)
-createControls(citySearch)
+// console.log(citySearch)
+// console.log(citySearch.cityName)
+const totalSlices = 12
+createUI(totalSlices)
+createControls(citySearch, totalSlices)
 
 })

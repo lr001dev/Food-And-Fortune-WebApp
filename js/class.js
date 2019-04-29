@@ -7,6 +7,7 @@ class SearchCity {
     this.cityName = ``
     this.cityID = ``
     this.foodCollections = []
+    this.chosenFoodCollectionsIndexes = []
     this.restaurantSelection = []
   }
   //////////////////////////////////////////////////////////
@@ -14,7 +15,7 @@ class SearchCity {
   ////////////////////////////////////////////////////////
 
   //Connect to Zomato API and find city
-  findCity (event) {
+  findCity (event, getCityFoodCollections, totalCollections, theCurrentInstance) {
     const $doesDivExist = $(`.city div`)
 
     if($doesDivExist.length === 0 ) {
@@ -43,17 +44,22 @@ class SearchCity {
       }).then((cityResponse) => {
         console.log(cityResponse)
         //Add City name to SearchCity Instance
-        this.cityName = cityResponse.location_suggestions[0].name
+        const cityName = cityResponse.location_suggestions[0].name
         // console.log(this.cityName)
-        this.cityID = cityResponse.location_suggestions[0].id
+        const cityID = cityResponse.location_suggestions[0].id
         // console.log(this.cityID)
+
+        //Update the current instance
+        this.updateInstance(cityName,cityID, theCurrentInstance)
+        //Calling our callback funtion to trigger 2nd API Call. City ID Required by API.
+        this.loadCityCollections(cityID, apiKey, totalCollections)
         //Lets append the new city value into the DOM
         $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
-
       }, (error) => {
         console.error(error)
         alert(`No Results Found. Please Try Again.`)
       })
+      // console.log(this.cityName)
       //Clear previous spin
       this.setupSpin(this.clearSpin)
 
@@ -65,6 +71,86 @@ class SearchCity {
         alert(`Please Enter Your City To Begin Your Food Search`)
     } else {
         alert(`Please Reset Your Seach Below`)
+    }
+  }
+  ////////////////////////////////////////////////////////
+  /// Method Connecting To Zomato API To Find City /////
+  //// Food Collections Based On City ID            ///
+  ////////////////////////////////////////////////////
+
+  loadCityCollections (cityID, key, collectionsLimit) {
+    const baseURL = `https://developers.zomato.com/api/v2.1/collections?`
+    const queryType = `city_id=`
+    let queryURL = baseURL + key + `&` + queryType + cityID
+    console.log(queryURL)
+    $.ajax({
+      url: queryURL
+    }).then((collectionResponse) => {
+
+      const foodCollectionsArray = []
+
+      for(let i = 0; i < collectionResponse.collections.length; i++) {
+        console.log(collectionResponse.collections[i].collection)
+        foodCollectionsArray.push(collectionResponse.collections[i].collection)
+      }
+
+      const chosenIndexesArray = []
+      console.log(`This the beg of my query` + collectionResponse)
+      //Lets choose random indexes from collectionResponse to create our food categories
+      for(let i = 0; i < collectionsLimit; i++) {
+        // console.log(Math.floor(Math.random() * 24))
+        let randomIndex = Math.floor(Math.random() * 25)
+        if(chosenIndexesArray.includes(randomIndex)) {
+          let checknumber = 0
+          do {
+            randomIndex = Math.floor(Math.random() * 25)
+            checknumber++
+          } while (chosenIndexesArray.includes(randomIndex))
+
+          chosenIndexesArray.push(randomIndex)
+
+        } else {
+          chosenIndexesArray.push(randomIndex)
+        }
+      }
+      console.log(`My Array ` + foodCollectionsArray)
+      this.createWheelFoodCategories(foodCollectionsArray, chosenIndexesArray)
+      //Lets append the new city value into the DOM
+      // $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
+    }, (error) => {
+      console.error(error)
+      alert(`No Results Found. Please Try Again.`)
+    })
+  }
+  ///////////////////////////////////////////////////////////////////////////
+  /// Method To Update Current SearchCity Instance With City Name & ID /////
+  /////////////////////////////////////////////////////////////////////////
+
+  updateInstance (theCity,theCityid, theCurrentInstance) {
+    this.cityName = theCity
+    this.cityID = theCityid
+    console.log(this.cityName)
+    console.log(this.cityID)
+    console.log(theCurrentInstance)
+  }
+  /////////////////////////////////////////////////////////////////////
+  /// Method To Update Current SearchCity Instance's Chosen Food /////
+  /// Collections Indexes And Food Collections Array From The Query///
+  //////////////////////////////////////////////////////////////////
+
+  createWheelFoodCategories (foodCollections, arrayOfChosenIndexes) {
+    this.foodCollections = foodCollections
+    this.chosenFoodCollectionsIndexes = arrayOfChosenIndexes
+    console.log(`Array Of Collections ` + this.foodCollections)
+    console.log(`Array Of Chosen Indexes ` + this.chosenFoodCollectionsIndexes)
+    for(let i = 0; i < this.chosenFoodCollectionsIndexes.length; i++) {
+      $(`.wheel-slice`).eq(i).text(``)
+        .append(
+        $(`<p>`)
+        .text(` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title } `))
+        .append($(`<img>`).attr(`src`, ` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].image_url } `))
+      // ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title }
+      // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
   }
   ////////////////////////////////////////////////////////////////////////
