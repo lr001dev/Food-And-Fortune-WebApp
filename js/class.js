@@ -146,9 +146,10 @@ class SearchCity {
     for(let i = 0; i < this.chosenFoodCollectionsIndexes.length; i++) {
       $(`.wheel-slice`).eq(i).text(``)
         .append( $(`<p>`)
-        .text(` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title } `) ) 
-        .append( $(`<div>`)
-        .append( $(`<img>`).attr(`src`, ` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].image_url } `) ) )
+        .text(` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title } `) )
+        .append( $(`<div>`).attr(`class`, `wheel-image`)
+        .append( $(`<img>`).attr(`src`, ` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].image_url } `)
+        .css(`width`, `3.5em`).css(`height`, `3.5em`).css(`border-radius`, `50%`) ) )
 
       // ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title }
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])

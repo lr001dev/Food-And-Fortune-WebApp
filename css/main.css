@@ -179,6 +179,10 @@ button:hover {
   list-style: none;
   overflow: hidden;
   box-shadow: inset 0px 1px 5px 4px rgba(0,0,0,1);
+  /* transition:  transform 30s; */
+}
+.the-wheel:hover {
+  transform: rotate(360deg)
 }
 #outter-wheel {
   margin-top: -41em;
@@ -283,12 +287,13 @@ li:nth-child(12) {
   text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
 .wheel-slice p {
+  font-weight: bold;
+}
+.wheel-image img {
+  margin-top: 1em;
+  border: 1px solid white;
+}
 
-}
-.wheel-slice img {
-  max-width: 100%;
-  border-radius: 50%;
-}
 @media screen and (max-width: 720px) {
   main {
     height: 48.6em;
@@ -348,6 +353,13 @@ li:nth-child(12) {
   #inputButton {
     margin-top: .5em;
     font-size: 1.5em;
+  }
+  .wheel-slice p {
+    font-size: .1em !important;
+  }
+  .wheel-image  img {
+    width: 2.1em !important;
+    height: 2.1em !important;
   }
 }
 @media screen and (max-width: 720px){
