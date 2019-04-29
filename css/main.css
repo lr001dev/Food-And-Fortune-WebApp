@@ -401,7 +401,7 @@ li:nth-child(12) {
 }
 @media screen and (max-width: 600px){
   main {
-    height: 750px;
+    height: 2000px;
   }
   .the-wheel {
     width: 25em;
