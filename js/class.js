@@ -145,10 +145,11 @@ class SearchCity {
     console.log(`Array Of Chosen Indexes ` + this.chosenFoodCollectionsIndexes)
     for(let i = 0; i < this.chosenFoodCollectionsIndexes.length; i++) {
       $(`.wheel-slice`).eq(i).text(``)
-        .append(
-        $(`<p>`)
-        .text(` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title } `))
-        .append($(`<img>`).attr(`src`, ` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].image_url } `))
+        .append( $(`<p>`)
+        .text(` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title } `) ) 
+        .append( $(`<div>`)
+        .append( $(`<img>`).attr(`src`, ` ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].image_url } `) ) )
+
       // ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title }
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
