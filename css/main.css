@@ -293,7 +293,7 @@ li:nth-child(12) {
   margin-top: 1em;
   border: 1px solid white;
 }
-.circle-button {
+.center-button {
   position: absolute;
   top: 18.8em;
   margin: 0 46.9%;
@@ -306,20 +306,21 @@ li:nth-child(12) {
   background-color: white;
   box-shadow: inset 0px 0px 4px 2px rgba(1,1,1,1);
   /* transition: transform 1s; */
-
-  /* color: white; */
   z-index: 1;
 }
-/* .fa, .far, .fas {
-  font-size: 2em;
+.circle-button:hover {
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+}
+.fa, .far, .fas {
+  margin-top: .2em;
+  font-size: 1.7em;
   color:  #f9d423;
 }
 .fas:hover {
-  transform: scale(1.5);
-} */
-.circle-button:hover {
-
+  color: ghostwhite;
+  transform: scale(.9);
 }
+
 @media screen and (max-width: 720px) {
   main {
     height: 48.6em;
@@ -386,6 +387,16 @@ li:nth-child(12) {
   .wheel-image  img {
     width: 2.1em !important;
     height: 2.1em !important;
+  }
+  .circle-button {
+    top: 11.5em;
+    margin: 0 45.9%;
+    width: 2em;
+    height: 2em;
+  }
+  .fa, .far, .fas {
+    margin-top: .3em;
+    font-size: 1.2em;
   }
 }
 @media screen and (max-width: 720px){

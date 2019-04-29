@@ -44,6 +44,7 @@ const createUI = (numOfSlices) => {
   }
   //Create center of circle elements
   $(`<div>`).addClass(`circle-button`).appendTo(`#inner-wheel`)
+  $(`<i>`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`).appendTo(`.circle-button`)
   $(`<div>`).addClass(`circle-button-small`).appendTo(`#inner-wheel`)
   $(`<div>`).addClass(`circle-button-tiny`).appendTo(`#inner-wheel`)
 
@@ -102,7 +103,7 @@ const createControls = (citySearch, numOfCollections) => {
 
       const $doesDivExist = $(`.city div`)
       const $inputExist = $(`#inputBox`).val()
-
+      console.log($doesDivExist.length)
       if($doesDivExist.length === 0 && $inputExist === '') {
 
           alert(`Please Enter Your City To Begin Your Food Fortune`)

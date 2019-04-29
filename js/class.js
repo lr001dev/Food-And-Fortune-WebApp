@@ -160,6 +160,8 @@ class SearchCity {
       // ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title }
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
+    $(`.circle-button`).toggleClass(`center-button`)
+    $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
     console.log(this.foodCollectionsIDs)
   }
   ////////////////////////////////////////////////////////////////////////
@@ -174,7 +176,7 @@ class SearchCity {
       $(`#bleepFx`).trigger('play')
       $(`.wheel-slice`).eq(selectTheSlice).toggleClass(`spin-selector`)
       $(`.wheel-slice`).eq(selectTheSlice).toggleClass(`wheel-select`)
-      $(`.circle-button`).toggleClass(`spin-selector`)
+      // $(`.circle-button`).toggleClass(`spin-selector`)
       $(`.circle-button-tiny`).toggleClass(`spin-selector`).css(`visibility`, `visible`)
       $(`.wheel-slice`).eq(selectTheSlice-1).toggleClass(`spin-selector`)
       $(`.wheel-slice`).eq(selectTheSlice-1).toggleClass(`wheel-select`)
@@ -209,6 +211,7 @@ class SearchCity {
     console.log(slice)
     //Disable orb `hide` css class and display orb pop up after set interval
     setTimeout(() => {
+      this.setupSpin ()
       // $(`.orb`).toggleClass(`hide`)
     }, 100 *  num)
     // return slice
@@ -219,12 +222,15 @@ class SearchCity {
 
   //Lets trigger the spin
   setupSpin () {
+    $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
     //Create click listener for beginning spin
     $(`.circle-button`).on(`click`, () => {
       //Lets spin the wheel
       this.spinWheel(this.calculateSelections(),this.rotateSelector)
       this.clearSpin()
-    }).append($(`<i>`).attr(`class`, `fas fa-sync-alt`))
+      $(`.circle-button`).off(`click`)
+      $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
+    })
   }
   ///////////////////////////////////////////
   /// Method To Clear The Current Spin /////
