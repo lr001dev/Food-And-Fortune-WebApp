@@ -427,9 +427,9 @@ li:nth-child(12) {
   }
 } */
 
-@media screen and (max-width: 360px){
+@media screen and (max-width: 414px){
   main {
-  height: 32.8em;
+  height: 39em;
   }
   .head-left h1 {
     margin-top: .8em;
