@@ -26,9 +26,9 @@ const createUI = (numOfSlices) => {
   //////////////////////////////////////
   /// Creating Back Text Elements /////
   ////////////////////////////////////
-  for(let i = 1; i <= 6; i++) {
-    $(`<div>`).attr(`id`, `back-text-${ i }`).addClass(`back-text`).text(`FOOD AND FORTUNE`).appendTo(`main`)
-  }
+  // for(let i = 1; i <= 6; i++) {
+  //   $(`<div>`).attr(`id`, `back-text-${ i }`).addClass(`back-text`).text(`FOOD AND FORTUNE`).appendTo(`main`)
+  // }
   ////////////////////////////////////////////
   /// Lets Begin Constructing Our Wheel /////
   //////////////////////////////////////////
@@ -56,7 +56,7 @@ const createUI = (numOfSlices) => {
   ///////////////////////////////////
   /// Creating Footer Elements /////
   /////////////////////////////////
-
+  
   $(`<div>`).addClass(`flex-foot`).addClass(`foot-left`)
     .appendTo( $(`<div>`).addClass(`flex-footer`).appendTo($(`<footer>`).appendTo(`body`)))
 
