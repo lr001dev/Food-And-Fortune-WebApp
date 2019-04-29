@@ -453,25 +453,26 @@ li:nth-child(12) {
     width: 21.7em;
     height: 21.7em;
   }
-
+  button {
+    font-size: 1.6em;
+  }
   #back-text-1 {
     top: 7.8em;
     font-size: 1.4em;
-    /* left: 2.4em; */
   }
   #back-text-2 {
     top: 18em;
     left: .6em;
   }
-  /* #back-text-3 {
-    bottom: 4em;
-    left: 2.9em;
-  } */
+  #back-text-3 {
+    bottom: 5.3em;
+    left: 9.5em;
+    font-size: 1.5em;
+  }
   #back-text-4 {
-    bottom: 1em;
+    bottom: 3em;
     left: 0;
-    font-size: 4em;
-
+    font-size: 5em;
   }
   #back-text-5 {
     top: 4.1em;
