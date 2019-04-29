@@ -323,7 +323,7 @@ li:nth-child(12) {
 
 @media screen and (max-width: 720px) {
   main {
-    height: 48.6em;
+    height: auto;
   }
   form {
    margin-top: .5em;
@@ -400,9 +400,6 @@ li:nth-child(12) {
   }
 }
 @media screen and (max-width: 600px){
-  main {
-    height: 2000px;
-  }
   .the-wheel {
     width: 25em;
     height: 25em;
