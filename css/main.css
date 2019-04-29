@@ -399,7 +399,10 @@ li:nth-child(12) {
     font-size: 1.2em;
   }
 }
-@media screen and (max-width: 720px){
+@media screen and (max-width: 600px){
+  main {
+    height: 750px;
+  }
   .the-wheel {
     width: 25em;
     height: 25em;
