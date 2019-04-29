@@ -246,8 +246,6 @@ li:nth-child(11) {
 li:nth-child(12) {
   transform: rotate(330deg) skewY(-60deg);
 }
-
-
 .slice-select {
   box-shadow: inset 0px 5px 5px 4px rgba(255,255,255,255);
 }
@@ -428,3 +426,26 @@ li:nth-child(12) {
     display: none;
   }
 } */
+
+@media screen and (max-width: 498px){
+  main {
+  height: 42em;
+  }
+  form {
+   margin-top: .7em;
+  }
+  input {
+    margin-top: .2em;
+    padding-top: .7em;
+    font-size: 1em;
+  }
+  .the-wheel {
+    width: 20.8em;
+    height: 20.7em;
+  }
+  #outter-wheel {
+    margin-top: -21.3em;
+    width: 21.7em;
+    height: 21.7em;
+  }
+}
