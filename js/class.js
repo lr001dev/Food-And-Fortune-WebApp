@@ -56,6 +56,7 @@ class SearchCity {
         this.loadCityCollections(cityID, apiKey, totalCollections)
         //Lets append the new city value into the DOM
         $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
+        $(`#voxFx`).trigger('play')
       }, (error) => {
         console.error(error)
         alert(`No Results Found. Please Try Again.`)
@@ -171,6 +172,7 @@ class SearchCity {
       // ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title }
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
+    $(`#pressFx02`).trigger('play')
     $(`.circle-button`).toggleClass(`center-button`)
     $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
     console.log(this.foodCollectionsIDs)
@@ -193,6 +195,7 @@ class SearchCity {
     //Create click listener for beginning spin
     $(`.circle-button`).on(`click`, () => {
       //Lets spin the wheel
+      $(`#pressFx01`).trigger('play')
       this.spinWheel(this.calculateSelections(),this.rotateSelector)
       this.clearSpin()
       $(`.circle-button`).off(`click`)

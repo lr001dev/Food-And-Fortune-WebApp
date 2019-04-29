@@ -68,15 +68,39 @@ const createUI = (numOfSlices) => {
   //////////////////////////////////////////////
 
   //Creating Music Player
-  $(`<audio controls loop>`).attr(`id`, `fortuneMusic`).css(`display`, `none`)
-    .attr(`src`, `audio/file_example_MP3_700KB.mp3`)
-    .attr(`id`, `musicMain`).attr(`type`, `audio/mpeg`)
+  // $(`<audio preload="auto" controls loop>`).attr(`id`, `fortuneMusic`).css(`display`, `none`)
+  //   .attr(`src`, `audio/msx/master_food_fortune_msx.mp3`)
+  //   .attr(`id`, `musicMain`).attr(`type`, `audio/mpeg`)
+  //   .appendTo(`.foot-left`)
+
+  //Creating FX For Wheel Beeps Player
+  $(`<audio preload="auto" controls>`).attr(`id`, `wheelFx`).css(`display`, `none`)
+    .attr(`src`, `audio/fx/master_food_fortune_fx_bleep.mp3`)
+    .attr(`id`, `bleepFx`).attr(`type`, `audio/mpeg`)
     .appendTo(`.foot-left`)
 
-  //Creating FX Player
-  $(`<audio controls>`).attr(`id`, `wheelFx`).css(`display`, `none`)
-    .attr(`src`, `audio/bleep.mp3`)
-    .attr(`id`, `bleepFx`).attr(`type`, `audio/mpeg`)
+  //Creating FX For Player Button Clicks
+  $(`<audio preload="auto" controls>`).attr(`id`, `buttonFx`).css(`display`, `none`)
+    .attr(`src`, `audio/fx/master_food_fortune_fx_click.mp3`)
+    .attr(`id`, `clickFx`).attr(`type`, `audio/mpeg`)
+    .appendTo(`.foot-left`)
+
+    //Creating Player FX For Food & Fortune Vox
+  $(`<audio preload="auto" controls>`).attr(`id`, `crowdFx`).css(`display`, `none`)
+    .attr(`src`, `audio/vox/master_food_fortune_vox.mp3`)
+    .attr(`id`, `voxFx`).attr(`type`, `audio/mpeg`)
+    .appendTo(`.foot-left`)
+
+    //Creating Player FX For Spin Button Press V1
+  $(`<audio preload="auto" controls>`).attr(`id`, `spinFx01`).css(`display`, `none`)
+    .attr(`src`, `audio/fx/master_food_fortune_fx_press_01.mp3`)
+    .attr(`id`, `pressFx01`).attr(`type`, `audio/mpeg`)
+    .appendTo(`.foot-left`)
+
+    //Creating Player FX For Spin Button Press V2
+  $(`<audio preload="auto" controls>`).attr(`id`, `spinFx02`).css(`display`, `none`)
+    .attr(`src`, `audio/fx/master_food_fortune_fx_press_02.mp3`)
+    .attr(`id`, `pressFx02`).attr(`type`, `audio/mpeg`)
     .appendTo(`.foot-left`)
 }
 
@@ -100,7 +124,7 @@ const createControls = (citySearch, numOfCollections) => {
   //Create input button for form
   $(`<button>`).attr(`id`, `inputButton`).attr(`type`, `submit`).attr(`value`, `submit`).text(`Load City`)
     .on(`click`, (event) => {
-
+      $(`#clickFx`).trigger('play')
       const $doesDivExist = $(`.city div`)
       const $inputExist = $(`#inputBox`).val()
       console.log($doesDivExist.length)
@@ -132,6 +156,9 @@ const createControls = (citySearch, numOfCollections) => {
   //Create button for overall audio control global mute on or off
   $(`<button>`).attr(`id`, `muteAudio`).text(`Mute Audio`)
     .on(`click`, () => {
+
+      $(`#clickFx`).trigger('play')
+
       const muteAudio = document.getElementById("musicMain")
 
       if( muteAudio.muted !== true) {
@@ -146,7 +173,10 @@ const createControls = (citySearch, numOfCollections) => {
     /////////////////////////////
 
   //Create button to reset the search query & wheel
-  $(`<button>`).attr(`id`, `wheelReset`).text(`Reset Wheel`).on(`click`, () => { resetSearch(citySearch) })
+  $(`<button>`).attr(`id`, `wheelReset`).text(`Reset Wheel`).on(`click`, () => {
+
+    $(`#clickFx`).trigger('play')
+   resetSearch(citySearch) })
     .appendTo(`.foot-mid`)
 
     ///////////////////////
@@ -154,7 +184,9 @@ const createControls = (citySearch, numOfCollections) => {
     /////////////////////
 
   //Create button for modal control
-  $(`<button>`).attr(`id`, `modalControl`).text(`Modal Control`).on(`click`, () => { alert(`Modal Control`) })
+  $(`<button>`).attr(`id`, `modalControl`).text(`Modal Control`).on(`click`, () => {
+    $(`#clickFx`).trigger('play')
+    alert( citySearch.cityName + citySearch.cityID + citySearch.foodCollections) })
     .appendTo(`.foot-right`)
 }
 
