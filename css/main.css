@@ -427,9 +427,14 @@ li:nth-child(12) {
   }
 } */
 
-@media screen and (max-width: 498px){
+@media screen and (max-width: 360px){
   main {
-  height: 42em;
+  height: 32.8em;
+  }
+  .head-left h1 {
+    margin-top: .8em;
+    margin-left: .1em;
+    font-size: 1.9em;
   }
   form {
    margin-top: .7em;
@@ -447,5 +452,34 @@ li:nth-child(12) {
     margin-top: -21.3em;
     width: 21.7em;
     height: 21.7em;
+  }
+
+  #back-text-1 {
+    top: 7.8em;
+    font-size: 1.4em;
+    /* left: 2.4em; */
+  }
+  #back-text-2 {
+    top: 18em;
+    left: .6em;
+  }
+  /* #back-text-3 {
+    bottom: 4em;
+    left: 2.9em;
+  } */
+  #back-text-4 {
+    bottom: 1em;
+    left: 0;
+    font-size: 4em;
+
+  }
+  #back-text-5 {
+    top: 4.1em;
+    left: 9.5em;
+    font-size: 1.3em;
+  }
+  #back-text-6 {
+    display: none;
+
   }
 }
