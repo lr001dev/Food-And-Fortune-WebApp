@@ -68,10 +68,10 @@ const createUI = (numOfSlices) => {
   //////////////////////////////////////////////
 
   //Creating Music Player
-  // $(`<audio preload="auto" controls loop>`).attr(`id`, `fortuneMusic`).css(`display`, `none`)
-  //   .attr(`src`, `audio/msx/master_food_fortune_msx.mp3`)
-  //   .attr(`id`, `musicMain`).attr(`type`, `audio/mpeg`)
-  //   .appendTo(`.foot-left`)
+  $(`<audio preload="auto" controls loop>`).attr(`id`, `fortuneMusic`).css(`display`, `none`)
+    .attr(`src`, `audio/msx/master_food_fortune_msx.mp3`)
+    .attr(`id`, `musicMain`).attr(`type`, `audio/mpeg`)
+    .appendTo(`.foot-left`)
 
   //Creating FX For Wheel Beeps Player
   $(`<audio preload="auto" controls>`).attr(`id`, `wheelFx`).css(`display`, `none`)
@@ -139,9 +139,6 @@ const createControls = (citySearch, numOfCollections) => {
         // that will make our 2nd API Call to retrieve City's Food Collections
         citySearch.findCity(event, citySearch.loadCityCollections, numOfCollections, citySearch)
 
-        //Trigger music playback when user begins search
-        $(`#musicMain`).trigger('play')
-
       } else {
 
         alert(`Reset Your Seach Below To Load Another City`)
@@ -197,5 +194,6 @@ let citySearch = new SearchCity()
 const totalSlices = 12
 createUI(totalSlices)
 createControls(citySearch, totalSlices)
+
 
 })

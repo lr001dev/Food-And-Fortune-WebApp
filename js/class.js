@@ -56,7 +56,13 @@ class SearchCity {
         this.loadCityCollections(cityID, apiKey, totalCollections)
         //Lets append the new city value into the DOM
         $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
+
+        //Trigger Vox Fx Playback
         $(`#voxFx`).trigger('play')
+
+        //Trigger music playback when user begins search
+        $(`#musicMain`).trigger('play').prop("volume", 0.1)
+
       }, (error) => {
         console.error(error)
         alert(`No Results Found. Please Try Again.`)
