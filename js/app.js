@@ -101,8 +101,14 @@ const createControls = (citySearch, numOfCollections) => {
     .on(`click`, (event) => {
 
       const $doesDivExist = $(`.city div`)
-      if($doesDivExist.length === 0 ) {
-        
+      const $inputExist = $(`#inputBox`).val()
+
+      if($doesDivExist.length === 0 && $inputExist === '') {
+
+          alert(`Please Enter Your City To Begin Your Food Fortune`)
+
+      } else if ($doesDivExist.length === 0) {
+
         // findCity() method located in our SearchCity class triggering our api call
         // Also passing loadCityCollections() method as a callback
         // that will make our 2nd API Call to retrieve City's Food Collections
@@ -110,10 +116,11 @@ const createControls = (citySearch, numOfCollections) => {
 
         //Trigger music playback when user begins search
         $(`#musicMain`).trigger('play')
-      } else if ($doesDivExist.length === 0  && this.cityName === undefined ) {
-          alert(`Please Enter Your City To Begin Your Food Search`)
+
       } else {
-        alert(`Please Reset Your Seach Below`)
+
+        alert(`Reset Your Seach Below To Load Another City`)
+
       }
     }).appendTo(`.head-right`)
 
