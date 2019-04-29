@@ -124,6 +124,17 @@ class SearchCity {
       alert(`No Results Found. Please Try Again.`)
     })
   }
+  ////////////////////////////////////////////////////////
+  /// Method Connecting To Zomato API To Find A Random ///
+  //// Restaurant Based On Food Collection ID         ///
+  //////////////////////////////////////////////////////
+  loadRestaurant (theWinningIndex, delay) {
+    setTimeout(() => {
+
+      $(`.orb`).toggleClass(`hide`)
+      // console.log(`I'm The orb`)
+    }, 100 *  delay)
+  }
   ///////////////////////////////////////////////////////////////////////////
   /// Method To Update Current SearchCity Instance With City Name & ID /////
   /////////////////////////////////////////////////////////////////////////
@@ -164,6 +175,58 @@ class SearchCity {
     $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
     console.log(this.foodCollectionsIDs)
   }
+  ///////////////////////////////////////////////////////////////////
+  /// Method To Calculate Random Number Of Rotating Selections  /////
+  //////////////////////////////////////////////////////////////////
+
+  //Calculate the number of selections in a spin
+  calculateSelections () {
+    return  Math.floor(Math.random() * 80)+24
+  }
+  //////////////////////////////////////
+  /// Method To Trigger The Spin  /////
+  ////////////////////////////////////
+
+  //Lets trigger the spin
+  setupSpin () {
+    $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
+    //Create click listener for beginning spin
+    $(`.circle-button`).on(`click`, () => {
+      //Lets spin the wheel
+      this.spinWheel(this.calculateSelections(),this.rotateSelector)
+      this.clearSpin()
+      $(`.circle-button`).off(`click`)
+      $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
+    })
+  }
+  /////////////////////////////////////////////////////
+  /// Method To Calculate Total Number Of Spins  /////
+  ///////////////////////////////////////////////////
+
+  //Calculating total # of rotating selections
+  spinWheel (spins, sliceSelector) {
+    console.log(spins)
+    //Category Ids from Zomato API
+    const myArray = this.foodCollectionsIDs
+    let num = ``
+    let slice = ``
+    //Looping based on number of random number of spins
+    for(let i = 0; i <= spins; i++) {
+      slice = Math.round( ((i/myArray.length) - Math.floor(i/myArray.length)) * myArray.length )
+      //Calling sliceSelector callback which really is this.rotateSelector ... Big on on/off switch
+      sliceSelector(i,slice)
+      num = i
+    }
+    console.log(slice)
+    console.log(this.foodCollectionsIDs[slice])
+    this.loadRestaurant(this.foodCollectionsIDs[slice],num)
+
+    //Disable orb `hide` css class and display orb pop up after set interval
+    setTimeout(() => {
+      this.setupSpin ()
+      // $(`.orb`).toggleClass(`hide`)
+    }, 100 *  num)
+  }
   ////////////////////////////////////////////////////////////////////////
   /// Method To Simulating Rotation Of Wheel By Toggling CSS Classes /////
   ///////////////////////////////////////////////////////////////////////
@@ -181,56 +244,6 @@ class SearchCity {
       $(`.wheel-slice`).eq(selectTheSlice-1).toggleClass(`spin-selector`)
       $(`.wheel-slice`).eq(selectTheSlice-1).toggleClass(`wheel-select`)
     }, 100 * currentLoop)
-  }
-  ///////////////////////////////////////////////////////////////////
-  /// Method To Calculate Random Number Of Rotating Selections  /////
-  //////////////////////////////////////////////////////////////////
-
-  //Calculate the number of selections in a spin
-  calculateSelections () {
-    return  Math.floor(Math.random() * 80)+24
-  }
-  /////////////////////////////////////////////////////
-  /// Method To Calculate Total Number Of Spins  /////
-  ///////////////////////////////////////////////////
-
-  //Calculating total # of rotating selections
-  spinWheel (spins, sliceSelector) {
-    console.log(spins)
-    //Category Ids from Zomato API
-    const myArray = [0,1,2,3,4,5,6,7,8,9,10,11]
-    let num = ``
-    let slice = ``
-    //Looping based on number of random number of spins
-    for(let i = 0; i <= spins; i++) {
-      slice = Math.round( ((i/myArray.length) - Math.floor(i/myArray.length)) * myArray.length )
-      //Calling sliceSelector callback which really is this.rotateSelector ... Big on on/off switch
-      sliceSelector(i,slice)
-      num = i
-    }
-    console.log(slice)
-    //Disable orb `hide` css class and display orb pop up after set interval
-    setTimeout(() => {
-      this.setupSpin ()
-      // $(`.orb`).toggleClass(`hide`)
-    }, 100 *  num)
-    // return slice
-  }
-  //////////////////////////////////////
-  /// Method To Trigger The Spin  /////
-  ////////////////////////////////////
-
-  //Lets trigger the spin
-  setupSpin () {
-    $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
-    //Create click listener for beginning spin
-    $(`.circle-button`).on(`click`, () => {
-      //Lets spin the wheel
-      this.spinWheel(this.calculateSelections(),this.rotateSelector)
-      this.clearSpin()
-      $(`.circle-button`).off(`click`)
-      $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
-    })
   }
   ///////////////////////////////////////////
   /// Method To Clear The Current Spin /////
