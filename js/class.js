@@ -241,7 +241,7 @@ class SearchCity {
         for(let i = 0; i < this.myRestaurantListings.length; i++) {
             console.log(this.myRestaurantListings[i])
         }
-        
+        $(`#modal`).css(`display`, `block`)
       $(`.orb`).toggleClass(`hide`)
       console.log(`I'm The orb`)
     }, 100 *  timeDelay)

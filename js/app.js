@@ -23,6 +23,12 @@ const createUI = (numOfSlices) => {
   $(`<div>`).addClass(`city`).appendTo(`main`)
   $(`<div>`).addClass(`flex-container`).appendTo(`main`)
 
+  //Create Modal Elements & Attach To Body
+  $(`<button>`).attr(`id`, `modal-close`).text(`Close`)
+  .appendTo($(`<div>`).attr(`id`, `modal`).appendTo(`body`))
+
+  //Create our orb pop up element for restaurant display
+  $(`<div>`).addClass(`orb`).appendTo(`#modal`)
   //////////////////////////////////////
   /// Creating Back Text Elements /////
   ////////////////////////////////////
@@ -48,8 +54,6 @@ const createUI = (numOfSlices) => {
   $(`<div>`).addClass(`circle-button-small`).appendTo(`#inner-wheel`)
   $(`<div>`).addClass(`circle-button-tiny`).appendTo(`#inner-wheel`)
 
-  //Create our orb pop up element for restaurant display
-  $(`<div>`).addClass(`orb`).appendTo(`#inner`)
   //Create our outter wheel element
   $(`<ul>`).attr(`id`, `outter-wheel`).addClass(`the-wheel`).appendTo(`.flex-container`)
 
@@ -181,10 +185,20 @@ const createControls = (citySearch, numOfCollections) => {
     /////////////////////
 
   //Create button for modal control
-  $(`<button>`).attr(`id`, `modalControl`).text(`Modal Control`).on(`click`, () => {
+  $(`<button>`).attr(`id`, `modalControl`).text(`My Fortunes`).on(`click`, () => {
+
     $(`#clickFx`).trigger('play')
-    alert( citySearch.cityName + citySearch.cityID + citySearch.foodCollections) })
+
+    $(`#modal`).css(`display`, `block`)
+
+    // alert( citySearch.cityName + citySearch.cityID + citySearch.foodCollections)
+  })
     .appendTo(`.foot-right`)
+
+    //Create Event For Closing Modal
+    $(`#modal-close`).on(`click`, () => {
+      $(`#modal`).css(`display`, `none`)
+    })
 }
 
 $(() => {
