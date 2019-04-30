@@ -34,7 +34,7 @@ class SearchCity {
       let $encodedCityQuery = encodeURI($(`#inputBox`).val())
       //Constructing our ajax url
       let queryURL = baseURL + apiKey + `&` + queryType + $encodedCityQuery + `&` + countQuery
-      console.log(queryURL)
+      console.log( `Our new find city query url is ` + queryURL )
 
       /////////////////////////
       ////Here's Our Ajax Call
@@ -51,7 +51,7 @@ class SearchCity {
         // console.log(this.cityID)
 
         //Update the current instance
-        this.updateInstance(cityName,cityID, theCurrentInstance)
+        this.updateInstanceCity(cityName,cityID, theCurrentInstance)
         //Calling our callback funtion to trigger 2nd API Call. City ID Required by API.
         this.loadCityCollections(cityID, apiKey, totalCollections)
         //Lets append the new city value into the DOM
@@ -91,28 +91,47 @@ class SearchCity {
     const baseURL = `https://developers.zomato.com/api/v2.1/collections?`
     const queryType = `city_id=`
     let queryURL = baseURL + key + `&` + queryType + cityID
-    console.log(queryURL)
+    console.log(`Our new load food collections query url is ` + queryURL)
+
+    /////////////////////////
+    ////Here's Our Ajax Call
+    ////////////////////////
+
     $.ajax({
       url: queryURL
     }).then((collectionResponse) => {
+      console.log( `Retrieved Food Collections Query ` + collectionResponse )
+      console.log( `The length of the Food Collections List is ` + collectionResponse.collections.length )
 
+      //Lets Push All The Food Collections Objects Into This Array
       const foodCollectionsArray = []
 
+      //Looping through the collectionResponse array of objects to construct our new array above
       for(let i = 0; i < collectionResponse.collections.length; i++) {
-        console.log(collectionResponse.collections[i].collection)
+
+        //Checking To See If We Have A Result
+        console.log(`Looping Through Each Collections Object ` + collectionResponse.collections[i].collection.title)
+
+        //Lets select each collection object and push to foodCollectionsArray
         foodCollectionsArray.push(collectionResponse.collections[i].collection)
+
+        console.log( `Checking foodCollectionsArray. We should see something here ` + foodCollectionsArray )
       }
 
+      //Lets choose random indexes from our foodCollectionsArray and
+      //create a new array with collectionsLimit ids
+
+      //We are pushing our chosen ids from below logic to create our food collections choices
       const chosenIndexesArray = []
-      console.log(`This the beg of my query` + collectionResponse)
+
       //Lets choose random indexes from collectionResponse to create our food categories
       for(let i = 0; i < collectionsLimit; i++) {
         // console.log(Math.floor(Math.random() * 24))
-        let randomIndex = Math.floor(Math.random() * 25)
+        let randomIndex = Math.floor(Math.random() * collectionResponse.collections.length)
         if(chosenIndexesArray.includes(randomIndex)) {
           let checknumber = 0
           do {
-            randomIndex = Math.floor(Math.random() * 25)
+            randomIndex = Math.floor(Math.random() * collectionResponse.collections.length)
             checknumber++
           } while (chosenIndexesArray.includes(randomIndex))
 
@@ -122,10 +141,11 @@ class SearchCity {
           chosenIndexesArray.push(randomIndex)
         }
       }
-      console.log(`My Array ` + foodCollectionsArray)
+      console.log( `Checking chosenIndexesArray. We should see something here ` + chosenIndexesArray )
+
+      //Lets append to the DOM with chosen response
       this.createWheelFoodCategories(foodCollectionsArray, chosenIndexesArray)
-      //Lets append the new city value into the DOM
-      // $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
+
     }, (error) => {
       console.error(error)
       alert(`No Results Found. Please Try Again.`)
@@ -135,33 +155,96 @@ class SearchCity {
   /// Method Connecting To Zomato API To Find A Random ///
   //// Restaurant Based On Food Collection ID         ///
   //////////////////////////////////////////////////////
-  loadRestaurant(theWinningCollectionId, delay) {
-      console.log(`Loading Restaurant List From Collection ID `+ theWinningCollectionId)
-      const baseURL = `https://developers.zomato.com/api/v2.1/search?`
-      const apiKey = `apikey=6500da95eb7ae54c977d83022574f182`
-      const queryEnityID = `entity_id=`
-      const queryEnityType = `entity_type=city`
-      const queryCollectionID = `collection_id=`
 
-      //Constructing our ajax url
-      let queryURL = baseURL + apiKey + `&` + queryEnityID + this.cityID + `&` +
-      queryEnityType + `&` + queryCollectionID + theWinningCollectionId
-      console.log(queryURL)
-    //   setTimeout(() => {
-    // //   $(`.orb`).toggleClass(`hide`)
-    // //   // console.log(`I'm The orb`)
-    // // }, 100 *  delay)
+  loadRestaurant(theWinningCollectionId, delay) {
+    console.log(`Loading Restaurant List From Collection ID `+ theWinningCollectionId)
+    const baseURL = `https://developers.zomato.com/api/v2.1/search?`
+    const apiKey = `apikey=6500da95eb7ae54c977d83022574f182`
+    const queryEnityID = `entity_id=`
+    const queryEnityType = `entity_type=city`
+    const queryCollectionID = `collection_id=`
+
+    //Constructing our ajax url
+    let queryURL = baseURL + apiKey + `&` + queryEnityID + this.cityID + `&` +
+    queryEnityType + `&` + queryCollectionID + theWinningCollectionId
+    console.log( `Our new load restaurant query url is ` + queryURL )
+
+    /////////////////////////
+    ////Here's Our Ajax Call
+    ////////////////////////
+
+    $.ajax({
+      url: queryURL
+    }).then( (restaurantsResponse) => {
+      console.log( `Retrieved Restaurant Query ` + restaurantsResponse )
+      console.log( `The length of the returned Restaurant List is ` + restaurantsResponse.restaurants.length)
+
+      //Lets Choose A Random Index From restaurantsResponse
+      const randomIndex = Math.floor( Math.random() * restaurantsResponse.restaurants.length )
+
+      //Lets Push All The Restaurant Objects From Our Query Into restaurantsArray
+      const restaurantsArray = []
+      //Lets Push Winning Restaurant Into winningRestaurantArray
+
+      const winningRestaurantArray = []
+      //Looping through the restaurantsResponse array of objects to constructor are new array above
+      for(let i = 0; i < restaurantsResponse.restaurants.length; i++) {
+
+        //Checking To See If We Have A Results
+        console.log( `Checking Restaurant Names ... Is It Working? `+ restaurantsResponse.restaurants[i].restaurant.name )
+
+        //Lets select each collection object and push to restaurantsArray
+        restaurantsArray.push( restaurantsResponse.restaurants[i].restaurant )
+      }
+      console.log( `Checking restaurantsArray. We should see something here ` + restaurantsArray )
+
+      winningRestaurantArray.push(restaurantsArray[randomIndex])
+
+      console.log( `Checking To See If We Selected A Restaurant...
+                    Name here? ${ winningRestaurantArray[0].name}
+                    was located at index ${ randomIndex } from restaurantsArray` )
+
+      console.log( `Checking To See If We Restaurant Object...
+                    Do We See it here? ${ winningRestaurantArray[0]}` )
+
+
+      this.updateInstanceRestaurant(winningRestaurantArray[0], delay)
+    }, (error) => {
+      console.error(error)
+      alert(`No Results Found. Please Try Again.`)
+    })
   }
   ///////////////////////////////////////////////////////////////////////////
   /// Method To Update Current SearchCity Instance With City Name & ID /////
   /////////////////////////////////////////////////////////////////////////
 
-  updateInstance (theCity,theCityid, theCurrentInstance) {
+  updateInstanceCity (theCity,theCityid, theCurrentInstance) {
     this.cityName = theCity
     this.cityID = theCityid
-    console.log(this.cityName)
-    console.log(this.cityID)
-    console.log(theCurrentInstance)
+    console.log( `Current City Name For This Instance is ` + this.cityName)
+    console.log( `Current City ID For This Instance is ` + this.cityID)
+    console.log(`Current Instance Constructor is ` + theCurrentInstance)
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////
+  /// Method To Update Current SearchCity Instance With Selected Restaurant Listings /////
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  updateInstanceRestaurant (myListing, timeDelay) {
+    this.myRestaurantListings.push(myListing)
+
+    //Testing the result to make sure we have a listing
+    console.log( `Current Instance myRestaurantListings Name is `
+    + this.myRestaurantListings[0].name + ` cuisine is ` + this.myRestaurantListings[0].cuisines )
+
+      setTimeout(() => {
+        //Lets Loop Through Our myRestaurantListings Array To Retrieve Restaurant Info
+        for(let i = 0; i < this.myRestaurantListings.length; i++) {
+            console.log(this.myRestaurantListings[i])
+        }
+        
+      $(`.orb`).toggleClass(`hide`)
+      console.log(`I'm The orb`)
+    }, 100 *  timeDelay)
   }
   /////////////////////////////////////////////////////////////////////
   /// Method To Update Current SearchCity Instance's Chosen Food /////
@@ -252,10 +335,10 @@ class SearchCity {
     this.loadRestaurant(winningId,num)
 
     //Disable orb `hide` css class and display orb pop up after set interval
-    // setTimeout(() => {
-    //   this.setupSpin ()
-    //   // $(`.orb`).toggleClass(`hide`)
-    // }, 100 *  num)
+    setTimeout(() => {
+      this.setupSpin ()
+      // $(`.orb`).toggleClass(`hide`)
+    }, 100 *  num)
   }
   ////////////////////////////////////////////////////////////////////////
   /// Method To Simulating Rotation Of Wheel By Toggling CSS Classes /////
