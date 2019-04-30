@@ -446,13 +446,13 @@ li:nth-child(12) {
     font-size: 1em;
   }
   .the-wheel {
-    width: 20.8em;
-    height: 20.7em;
+    width: 22.8em;
+    height: 22.7em;
   }
   #outter-wheel {
-    margin-top: -21.3em;
-    width: 21.7em;
-    height: 21.7em;
+    margin-top: -23.3em;
+    width: 23.7em;
+    height: 23.7em;
   }
   button {
     font-size: 1.6em;
@@ -482,6 +482,33 @@ li:nth-child(12) {
   }
   #back-text-6 {
     display: none;
-
+  }
+  #inputButton {
+    margin-top: .65em;
+    font-size: 1.4em;
+    padding-bottom: .3em;
+  }
+  .wheel-slice p {
+    margin-top: -1.5em;
+    font-size:
+  }
+  .wheel-image {
+    margin-top: 0;
+  }
+  .wheel-image  img {
+    margin-top: .2em;
+    margin-left: -.3em;
+    width: 1.9em;
+    height: 1.9em;
+  }
+  .circle-button {
+    top: 10.3em;
+    margin: 0 45.2%;
+    width: 2em;
+    height: 2em;
+  }
+  .fa, .far, .fas {
+    margin-top: .3em;
+    font-size: 1.2em;
   }
 }
