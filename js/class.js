@@ -9,7 +9,7 @@ class SearchCity {
     this.foodCollections = []
     this.chosenFoodCollectionsIndexes = []
     this.foodCollectionsIDs = []
-    this.restaurantSelection = []
+    this.myRestaurantListings = []
   }
   //////////////////////////////////////////////////////////
   /// Method Connecting To Zomato API To Find City Id /////
@@ -135,12 +135,22 @@ class SearchCity {
   /// Method Connecting To Zomato API To Find A Random ///
   //// Restaurant Based On Food Collection ID         ///
   //////////////////////////////////////////////////////
-  loadRestaurant (theWinningIndex, delay) {
-    setTimeout(() => {
+  loadRestaurant(theWinningCollectionId, delay) {
+      console.log(`Loading Restaurant List From Collection ID `+ theWinningCollectionId)
+      const baseURL = `https://developers.zomato.com/api/v2.1/search?`
+      const apiKey = `apikey=6500da95eb7ae54c977d83022574f182`
+      const queryEnityID = `entity_id=`
+      const queryEnityType = `entity_type=city`
+      const queryCollectionID = `collection_id=`
 
-      $(`.orb`).toggleClass(`hide`)
-      // console.log(`I'm The orb`)
-    }, 100 *  delay)
+      //Constructing our ajax url
+      let queryURL = baseURL + apiKey + `&` + queryEnityID + this.cityID + `&` +
+      queryEnityType + `&` + queryCollectionID + theWinningCollectionId
+      console.log(queryURL)
+    //   setTimeout(() => {
+    // //   $(`.orb`).toggleClass(`hide`)
+    // //   // console.log(`I'm The orb`)
+    // // }, 100 *  delay)
   }
   ///////////////////////////////////////////////////////////////////////////
   /// Method To Update Current SearchCity Instance With City Name & ID /////
@@ -226,15 +236,26 @@ class SearchCity {
       sliceSelector(i,slice)
       num = i
     }
+    //(slice) Represents the chosen index of $(`.wheel-slice`) containing
+    //Food Collection Category On The Wheel
     console.log(slice)
+
+    //this.foodCollectionsIDs[slice] Grabs the Food Collection ID from the array
+    //The this.foodCollectionsIDs array is in the same index order as $(`.wheel-slice`)
     console.log(this.foodCollectionsIDs[slice])
-    this.loadRestaurant(this.foodCollectionsIDs[slice],num)
+    const winningId = this.foodCollectionsIDs[slice]
+    console.log(`The Winning Food Collection ID Before Load @ Index ${ slice }` + winningId)
+    //Lets call this function and pass the above as parameters so we can make another
+    //API call for this spin. We will locate and actual restaurant and display to user
+    //We need varaible num here so we can sync settimeout in this.loadRestaurant()
+    //with triggers that occur at the end of the spin
+    this.loadRestaurant(winningId,num)
 
     //Disable orb `hide` css class and display orb pop up after set interval
-    setTimeout(() => {
-      this.setupSpin ()
-      // $(`.orb`).toggleClass(`hide`)
-    }, 100 *  num)
+    // setTimeout(() => {
+    //   this.setupSpin ()
+    //   // $(`.orb`).toggleClass(`hide`)
+    // }, 100 *  num)
   }
   ////////////////////////////////////////////////////////////////////////
   /// Method To Simulating Rotation Of Wheel By Toggling CSS Classes /////
