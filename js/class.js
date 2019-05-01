@@ -236,29 +236,48 @@ class SearchCity {
     console.log( `Current Instance myRestaurantListings Name is `
     + this.myRestaurantListings[0].name + ` cuisine is ` + this.myRestaurantListings[0].cuisines )
 
-    //Prepare Restaurant Data For DOM
-    const name = this.myRestaurantListings[i].name
-    const userRating = this.myRestaurantListings[i].user_rating["aggregate_rating"]
-    const userRatingText = this.myRestaurantListings[i].user_rating["rating_text"]
-    const userRatingColor = this.myRestaurantListings[i].user_rating["rating_color"]
-    const averageCost = `$ ${ this.myRestaurantListings[i].average_cost_for_two }`
-    const cuisines = this.myRestaurantListings[i].cuisines
-    const address = this.myRestaurantListings[i].location["address"]
-    const locality = this.myRestaurantListings[i].location["locality"]
-    const city = this.myRestaurantListings[i].location["city"]
-    const zipCode = this.myRestaurantListings[i].location["zipcode"]
-
       setTimeout(() => {
+
         //Lets Loop Through Our myRestaurantListings Array To Retrieve Restaurant Info
+        const $checkResBody = $(`.res-body`)
+        let currentElement = 0
+
         for(let i = 0; i < this.myRestaurantListings.length; i++) {
+          const $checkFirstListing = $(`#resId-${ i } h1.res-name`).children().length
+          console.log(`Any Children? ${ $checkFirstListing }`)
+
+          //Prepare Restaurant Data For DOM
+          const name = this.myRestaurantListings[i].name
+          const userRating = this.myRestaurantListings[i].user_rating.aggregate_rating
+          const userRatingText = this.myRestaurantListings[i].user_rating.rating_text
+          const userRatingColor = this.myRestaurantListings[i].user_rating.rating_color
+          const averageCost = `$ ${ this.myRestaurantListings[i].average_cost_for_two }`
+          const cuisines = this.myRestaurantListings[i].cuisines
+          const address = this.myRestaurantListings[i].location.address
+          const locality = this.myRestaurantListings[i].location.locality
+          const city = this.myRestaurantListings[i].location.city
+          const zipCode = this.myRestaurantListings[i].location.zipcode
+
             if( i === 0 ) {
+
               console.log($(`#resId-${ i } .res-name`))
               console.log(`The Current Res Name is ${ this.myRestaurantListings[i].name }` )
               console.log( i )
 
-              $(`#resId-${ i } .res-name`).text(`${ this.myRestaurantListings[i].name  }`)
-              $(`#resId-${ i } .res-head` ).text(`${ this.myRestaurantListings[i].user_rating  }`)
+              //Add Data To Restaurant Header
+              $(`#resId-${ i } .res-name`).append($(`h1`).text(`${ name }`))
+              $(`#resId-${ i } .res-ratings`).append($(`<p>`).text(`${ userRating  }`))
+              $(`#resId-${ i } .res-ratings`).append($(`<p>`).text(`${ userRatingText  }`))
+              $(`#resId-${ i } .res-ratings`).append($(`<p>`).text(`${ userRatingColor  }`))
 
+              //Add Data Restaurant Body
+              $(`#resId-${ i } .cuisines`).text(`Cuisines`).append($(`<p>`).text(`${ cuisines  }`))
+              $(`#resId-${ i } .average_cost`).text(`Average Cost For 2`).append($(`<p>`).text(`${ averageCost  }`))
+              $(`#resId-${ i } .address`).text(`Address`).append($(`<p>`).text(`${ address }`))
+              $(`<p>`).text(`${ locality }`).appendTo(`.address`)
+              $(`<p>`).text(`${ city }`).appendTo(`.address`)
+              $(`<p>`).text(`${ zipCode }`).appendTo(`.address`)
+              
             } else {
               $(`<div>`).attr(`id`, `resId-${ i + 1 }`).addClass(`listings`).appendTo(`#modal`)
             }
