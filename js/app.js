@@ -218,6 +218,7 @@ const createControls = (citySearch, numOfCollections) => {
 
     //Create Event For Closing Modal
     $(`#modal-close`).on(`click`, () => {
+      $(`#clickFx`).trigger('play')
       $(`#modal`).css(`display`, `none`)
     })
 }

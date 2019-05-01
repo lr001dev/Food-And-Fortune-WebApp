@@ -58,7 +58,7 @@ class SearchCity {
         $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
 
         //Trigger Vox Fx Playback
-        $(`#voxFx`).trigger('play')
+        $(`#voxFx`).trigger('play').prop("volume", 0.2)
 
         //Trigger music playback when user begins search
         $(`#musicMain`).trigger('play').prop("volume", 0.1)
@@ -369,7 +369,7 @@ class SearchCity {
       // ${ this.foodCollections[this.chosenFoodCollectionsIndexes[i]].title }
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
-    $(`#pressFx02`).trigger('play')
+    $(`#pressFx02`).trigger('play').prop("volume", 0.2)
     $(`.circle-button`).toggleClass(`center-button`)
     $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
     console.log(this.foodCollectionsIDs)
@@ -392,7 +392,7 @@ class SearchCity {
     //Create click listener for beginning spin
     $(`.circle-button`).on(`click`, () => {
       //Lets spin the wheel
-      $(`#pressFx01`).trigger('play')
+      $(`#pressFx01`).trigger('play').prop("volume", 0.2)
       this.spinWheel(this.calculateSelections(),this.rotateSelector)
       this.clearSpin()
       $(`.circle-button`).off(`click`)
@@ -447,7 +447,7 @@ class SearchCity {
     setTimeout(() => {
       console.log(`loop `  + currentLoop)
       console.log(`index is `  + selectTheSlice)
-      $(`#bleepFx`).trigger('play')
+      $(`#bleepFx`).trigger('play').prop("volume", 0.2)
       $(`.wheel-slice`).eq(selectTheSlice).toggleClass(`spin-selector`)
       $(`.wheel-slice`).eq(selectTheSlice).toggleClass(`wheel-select`)
       // $(`.circle-button`).toggleClass(`spin-selector`)
