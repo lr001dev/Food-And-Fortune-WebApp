@@ -284,6 +284,7 @@ class SearchCity {
           //Lets Check If It's First Listing In DOM
           if(theLastIndex === 0) {
           //Add Data To Restaurant Header
+          $(`.no-listings`).remove()
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<h1>`).text(`${ collectionTitle }`))
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<img>`).attr(`src`, `${ collectionImageUrl }`))
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<p>`).text(`${ collectionDescription }`))

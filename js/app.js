@@ -207,9 +207,11 @@ const createControls = (citySearch, numOfCollections) => {
   $(`<button>`).attr(`id`, `modalControl`).text(`My Fortunes`).on(`click`, () => {
 
     $(`#clickFx`).trigger('play')
-
     $(`#modal`).css(`display`, `block`)
 
+    if($(`.res-collection`).children().length === 0) {
+      $(`.res-collection`).append($(`<h1>`).attr(`class`, `no-listings`).text(`You have no Fortunes yet ... Spin The Wheel`))
+    }
     // alert( citySearch.cityName + citySearch.cityID + citySearch.foodCollections)
   })
     .appendTo(`.foot-right`)
