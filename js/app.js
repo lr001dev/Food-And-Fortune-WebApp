@@ -23,9 +23,28 @@ const createUI = (numOfSlices) => {
   $(`<div>`).addClass(`city`).appendTo(`main`)
   $(`<div>`).addClass(`flex-container`).appendTo(`main`)
 
-  //Create Modal Elements & Attach To Body
+  //////////////////////////////////////////////////
+  /// //Create Modal Elements & Attach To Body /////
+  /////////////////////////////////////////////////
+
+  //Create Modal & Modal Close Button
   $(`<button>`).attr(`id`, `modal-close`).text(`Close`)
   .appendTo($(`<div>`).attr(`id`, `modal`).appendTo(`body`))
+
+  //Create Restaurant Container & H1 Tag
+  $(`<h1>`).attr(`class`,`res-name`)
+  .appendTo($(`<div>`).attr(`class`, `res-head`)
+  .appendTo($(`<div>`).attr(`id`, `resId-0`)
+  .appendTo(`#modal`)))
+  //Create Restaurant Body Container
+  $(`<div>`).attr(`class`, `res-body`).appendTo(`#resId-0`)
+
+  //Creating H2 Tags For Later Use
+  for(let i = 0; i < 5; i++) {
+    $(`<h2>`).appendTo(`#resId-0 .res-body`)
+  }
+
+
 
   //Create our orb pop up element for restaurant display
   $(`<div>`).addClass(`orb`).appendTo(`#modal`)

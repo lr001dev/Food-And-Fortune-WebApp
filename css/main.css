@@ -335,6 +335,7 @@ li:nth-child(12) {
 	z-index: 11;
 	/*If overflow is clipped, a scroll-bar should be added to see the rest of the content*/
 	overflow:auto;
+  transition-duration: 2s
 }
 #modal-close {
   width: 100%;
