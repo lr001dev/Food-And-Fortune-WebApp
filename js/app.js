@@ -32,11 +32,10 @@ const createUI = (numOfSlices) => {
   .appendTo($(`<div>`).attr(`id`, `modal`).appendTo(`body`))
 
   //Create Restaurant Container Header Containers
-  $(`<div>`).attr(`class`,`res-name`)
-  .appendTo($(`<div>`).attr(`class`, `res-head`)
-  .appendTo($(`<div>`).attr(`id`, `resId-0`)
-  .appendTo(`#modal`)))
+  $(`<div>`).attr(`class`,`res-collection`).appendTo($(`<div>`).attr(`class`, `res-head`)
+  .appendTo($(`<div>`).attr(`id`, `resId-0`).attr(`class`, `listings`).appendTo(`#modal`)))
 
+  $(`<div>`).attr(`class`, `res-name`).appendTo(`.res-head`)
   $(`<div>`).attr(`class`, `res-ratings`).appendTo(`.res-head`)
 
   //Create Restaurant Body Container

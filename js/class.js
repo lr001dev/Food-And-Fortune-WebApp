@@ -208,7 +208,7 @@ class SearchCity {
                     Do We See it here? ${ winningRestaurantArray[0]}` )
 
 
-      this.updateInstanceRestaurant(winningRestaurantArray[0], delay)
+      this.updateInstanceRestaurant(winningRestaurantArray[0], delay, theWinningCollectionId)
     }, (error) => {
       console.error(error)
       alert(`No Results Found. Please Try Again.`)
@@ -229,64 +229,119 @@ class SearchCity {
   /// Method To Update Current SearchCity Instance With Selected Restaurant Listings /////
   ////////////////////////////////////////////////////////////////////////////////////////
 
-  updateInstanceRestaurant (myListing, timeDelay) {
+  updateInstanceRestaurant (myListing, timeDelay, listingCollection) {
     this.myRestaurantListings.push(myListing)
 
     //Testing the result to make sure we have a listing
     console.log( `Current Instance myRestaurantListings Name is `
     + this.myRestaurantListings[0].name + ` cuisine is ` + this.myRestaurantListings[0].cuisines )
 
+      //Delay Listing Display For After The Wheel Is Done Spinning
       setTimeout(() => {
+        const $checkIf0 = $(`#resId-0`).attr(`data`)
+        console.log(`The Data Id is ${ $checkIf0 }`)
 
-        //Lets Loop Through Our myRestaurantListings Array To Retrieve Restaurant Info
-        const $checkResBody = $(`.res-body`)
-        let currentElement = 0
+        ///////////////////////////////////
+        ////Prepare Restaurant Data For DOM
+        ///////////////////////////////////
 
-        for(let i = 0; i < this.myRestaurantListings.length; i++) {
-          const $checkFirstListing = $(`#resId-${ i } h1.res-name`).children().length
-          console.log(`Any Children? ${ $checkFirstListing }`)
+        //Let's Find The Wining Collection & Grab Key Values To Prepare For DOM
+        let collectionTitle = ''
+        let collectionDescription = ''
+        let collectionImageUrl = ''
 
-          //Prepare Restaurant Data For DOM
-          const name = this.myRestaurantListings[i].name
-          const userRating = this.myRestaurantListings[i].user_rating.aggregate_rating
-          const userRatingText = this.myRestaurantListings[i].user_rating.rating_text
-          const userRatingColor = this.myRestaurantListings[i].user_rating.rating_color
-          const averageCost = `$ ${ this.myRestaurantListings[i].average_cost_for_two }`
-          const cuisines = this.myRestaurantListings[i].cuisines
-          const address = this.myRestaurantListings[i].location.address
-          const locality = this.myRestaurantListings[i].location.locality
-          const city = this.myRestaurantListings[i].location.city
-          const zipCode = this.myRestaurantListings[i].location.zipcode
+        this.foodCollections.forEach((object) => {
+          if(object.collection_id === listingCollection) {
 
-            if( i === 0 ) {
+            collectionTitle = object.title
+            console.log(`Checking to see if we can locate winning collection title: ${ collectionTitle }`)
 
-              console.log($(`#resId-${ i } .res-name`))
-              console.log(`The Current Res Name is ${ this.myRestaurantListings[i].name }` )
-              console.log( i )
+            collectionDescription = object.description
+            console.log(`Checking to see if we can locate winning collection description: ${ collectionDescription }`)
 
-              //Add Data To Restaurant Header
-              $(`#resId-${ i } .res-name`).append($(`h1`).text(`${ name }`))
-              $(`#resId-${ i } .res-ratings`).append($(`<p>`).text(`${ userRating  }`))
-              $(`#resId-${ i } .res-ratings`).append($(`<p>`).text(`${ userRatingText  }`))
-              $(`#resId-${ i } .res-ratings`).append($(`<p>`).text(`${ userRatingColor  }`))
+            collectionImageUrl = object.image_url
+            console.log(`Checking to see if we can locate winning collection image url: ${ collectionImageUrl }`)
+          }
+        })
+        //Lets Grab Last Restaurant Object At Last Index Of Array
+        let theLastIndex = this.myRestaurantListings.length - 1
+        console.log(`Selecting Last Element: ${ this.myRestaurantListings[theLastIndex].name  }`)
 
-              //Add Data Restaurant Body
-              $(`#resId-${ i } .cuisines`).text(`Cuisines`).append($(`<p>`).text(`${ cuisines  }`))
-              $(`#resId-${ i } .average_cost`).text(`Average Cost For 2`).append($(`<p>`).text(`${ averageCost  }`))
-              $(`#resId-${ i } .address`).text(`Address`).append($(`<p>`).text(`${ address }`))
-              $(`<p>`).text(`${ locality }`).appendTo(`.address`)
-              $(`<p>`).text(`${ city }`).appendTo(`.address`)
-              $(`<p>`).text(`${ zipCode }`).appendTo(`.address`)
-              
-            } else {
-              $(`<div>`).attr(`id`, `resId-${ i + 1 }`).addClass(`listings`).appendTo(`#modal`)
-            }
-              console.log(this.myRestaurantListings[i])
+        let name = this.myRestaurantListings[theLastIndex].name
+        let userRating = this.myRestaurantListings[theLastIndex].user_rating.aggregate_rating
+        let userRatingText = this.myRestaurantListings[theLastIndex].user_rating.rating_text
+        let userRatingColor = this.myRestaurantListings[theLastIndex].user_rating.rating_color
+        let averageCost = `$ ${ this.myRestaurantListings[theLastIndex].average_cost_for_two }`
+        let cuisines = this.myRestaurantListings[theLastIndex].cuisines
+        let address = this.myRestaurantListings[theLastIndex].location.address
+        let locality = this.myRestaurantListings[theLastIndex].location.locality
+        let city = this.myRestaurantListings[theLastIndex].location.city
+        let zipCode = this.myRestaurantListings[theLastIndex].location.zipcode
+
+          console.log($(`#resId-${ theLastIndex } .res-name`))
+          console.log(`The Current Res Name is ${ this.myRestaurantListings[theLastIndex].name }` )
+          console.log( theLastIndex )
+          //Lets Check If It's First Listing In DOM
+          if(theLastIndex === 0) {
+          //Add Data To Restaurant Header
+          $(`#resId-${ theLastIndex } .res-collection`).append($(`<h1>`).text(`${ collectionTitle }`))
+          $(`#resId-${ theLastIndex } .res-collection`).append($(`<img>`).attr(`src`, `${ collectionImageUrl }`))
+          $(`#resId-${ theLastIndex } .res-collection`).append($(`<p>`).text(`${ collectionDescription }`))
+          $(`#resId-${ theLastIndex } .res-name`).append($(`<h1>`).text(`${ name }`))
+          $(`#resId-${ theLastIndex } .res-ratings`).append($(`<p>`).text(`${ userRating  }`))
+          $(`#resId-${ theLastIndex } .res-ratings`).append($(`<p>`).text(`${ userRatingText  }`))
+          $(`#resId-${ theLastIndex } .res-ratings`).append($(`<p>`).text(`${ userRatingColor  }`))
+
+          //Add Data To Restaurant Body
+          $(`#resId-${ theLastIndex } .cuisines`).text(`Cuisines:`).append($(`<p>`).text(`${ cuisines  }`))
+          $(`#resId-${ theLastIndex } .average_cost`).text(`Average Cost For 2:`).append($(`<p>`).text(`${ averageCost  }`))
+          $(`#resId-${ theLastIndex } .address`).text(`Address:`).append($(`<p>`).text(`${ address }`))
+          $(`<p>`).text(`${ locality }`).appendTo(`.address`)
+          $(`<p>`).text(`${ city }`).appendTo(`.address`)
+          $(`<p>`).text(`${ zipCode }`).appendTo(`.address`)
         }
+          else {
+            console.log(`this is now true`)
+
+            //Create And Append New Restaurant Data To DOM
+            const $modalSelectoer = $(`#modal`)
+            const $resContainer = $(`<div>`).attr(`id`, ` resId-${ theLastIndex } `).attr(`class`, `listings`)
+            const $resHead = $(`<div>`).attr(`class`, `res-head`).appendTo($resContainer)
+            const $resBody = $(`<div>`).attr(`class`, `res-body`).appendTo($resContainer)
+
+            const $resCollection = $(`<div>`).attr(`class`, `res-collection`).appendTo($resHead)
+            $(`<h1>`).text(`${ collectionTitle }`).appendTo($resCollection)
+            $(`<img>`).attr(`src`, `${ collectionImageUrl }`).appendTo($resCollection)
+            $(`<p>`).text(`${ collectionDescription }`).appendTo($resCollection)
+
+            const $resName =  $(`<div>`).attr(`class`, `res-name`).appendTo($resHead)
+            $(`<h1>`).text(`${ name }`).appendTo($resName)
+
+            const $resRatings = $(`<div>`).attr(`class`, `res-ratings`).appendTo($resHead)
+            $(`<p>`).text(`${ userRating  }`).appendTo($resRatings)
+            $(`<p>`).text(`${ userRatingText  }`).appendTo($resRatings)
+            $(`<p>`).text(`${ userRatingColor  }`).appendTo($resRatings)
+
+            const $h2Cuisines = $(`<h2>`).attr(`class`, `cuisines `).text(`Cuisines:`)
+            .append($(`<p>`).text(`${ cuisines }`)).appendTo($resBody)
+
+            const $h2Cost = $(`<h2>`).attr(`class`, `average_cost`).text(`Average Cost For 2:`)
+            .append($(`<p>`).text(`${ averageCost }`)).appendTo($resBody)
+
+            const $h2Address = $(`<h2>`).attr(`class`, `address`).text(`Address:`).appendTo($resBody)
+            $(`<p>`).text(`${ address  }`).appendTo($h2Address)
+            $(`<p>`).text(`${ locality }`).appendTo($h2Address)
+            $(`<p>`).text(`${ city }`).appendTo($h2Address)
+            $(`<p>`).text(`${ zipCode }`).appendTo($h2Address)
+
+            $modalSelectoer.append($resContainer)
+
+          }
+          console.log(this.myRestaurantListings[theLastIndex])
         $(`#modal`).css(`display`, `block`)
       $(`.orb`).toggleClass(`hide`)
       console.log(`I'm The orb`)
-    }, 100 *  timeDelay)
+    } , 100 *  timeDelay)
   }
   /////////////////////////////////////////////////////////////////////
   /// Method To Update Current SearchCity Instance's Chosen Food /////
