@@ -223,7 +223,7 @@ class SearchCity {
 
   getFortuneCookie() {
     $.ajax({
-      url: `http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=300&skip=&page=`
+      url: `https://fortunecookieapi.herokuapp.com/v1/fortunes?limit=300`
     }).then( (fortuneCookie) => {
       console.log(fortuneCookie[0].message)
       this.updateInstanceFortune(fortuneCookie[0])
