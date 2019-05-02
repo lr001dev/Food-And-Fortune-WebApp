@@ -306,7 +306,7 @@ class SearchCity {
           $(`.no-listings`).remove()
 
           //Add Fortune
-          $(`#fortune`).append($(`<h3>`).text(`Your Fortune For The Day:`))
+          $(`#fortune`).css(`visibility`, `hidden`).append($(`<h3>`).text(`Your Fortune For The Day:`))
           .append($(`<p>`).text(`"${ this.myFortuneCookie.message }"`))
 
           //Add Data To Restaurant Header
@@ -365,6 +365,7 @@ class SearchCity {
             console.log($(`.listings`))
           }
           console.log(this.myRestaurantListings[theLastIndex])
+        $(`#fortune`).css(`visibility`, `visible`)
         $(`#modal`).css(`display`, `block`)
       // $(`.orb`).toggleClass(`hide`)
       console.log(`I'm The orb`)

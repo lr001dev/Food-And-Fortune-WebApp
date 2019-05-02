@@ -32,7 +32,7 @@ const createUI = (numOfSlices) => {
   .appendTo($(`<div>`).attr(`id`, `modal`).appendTo(`body`))
 
   //Create Fortune Cookike Container
-  $(`<div>`).attr(`id`, `fortune`).appendTo(`#modal`)
+  $(`<div>`).attr(`id`, `fortune`).css(`visibility`, `hidden`).appendTo(`#modal`)
 
   //Create Restaurant Container Header Containers
   $(`<div>`).attr(`class`,`res-collection`).appendTo($(`<div>`).attr(`class`, `res-head`)

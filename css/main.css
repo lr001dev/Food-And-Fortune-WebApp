@@ -186,9 +186,9 @@ button:hover {
   transition:  transform 5s;
 }
 .the-wheel:hover {
-  /* transform: scale(1.3); */
-  /* z-index: 11;
-  transform: rotate(360deg); */
+  /* transform: scale(1.2); */
+  /* z-index: 11; */
+  /* transform: rotate(360deg); */
 }
 #outter-wheel {
   margin-top: -41em;
