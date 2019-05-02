@@ -58,7 +58,7 @@ class SearchCity {
         $(`<h2>`).text(`${ this.cityName }`).appendTo($(`<div>`).appendTo(`.city`))
 
         //Trigger Vox Fx Playback
-        $(`#voxFx`).trigger('play').prop("volume", 0.2)
+        $(`#voxFx`).trigger('play').prop("volume", 0.3)
 
         //Trigger music playback when user begins search
         $(`#musicMain`).trigger('play').prop("volume", 0.1)
@@ -285,7 +285,7 @@ class SearchCity {
           if(theLastIndex === 0) {
           //Add Data To Restaurant Header
           $(`.no-listings`).remove()
-          $(`#resId-${ theLastIndex } .res-collection`).append($(`<h1>`).text(`${ collectionTitle }`))
+          $(`#resId-${ theLastIndex } .res-collection`).append($(`<h1>`).text(`${ collectionTitle } Collection`))
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<img>`).attr(`src`, `${ collectionImageUrl }`))
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<p>`).text(`${ collectionDescription }`))
           $(`#resId-${ theLastIndex } .res-name`).append($(`<h1>`).text(`${ name }`))
@@ -311,7 +311,7 @@ class SearchCity {
             const $resBody = $(`<div>`).attr(`class`, `res-body`).appendTo($resContainer)
 
             const $resCollection = $(`<div>`).attr(`class`, `res-collection`).appendTo($resHead)
-            $(`<h1>`).text(`${ collectionTitle }`).appendTo($resCollection)
+            $(`<h1>`).text(`${ collectionTitle } Collection`).appendTo($resCollection)
             $(`<img>`).attr(`src`, `${ collectionImageUrl }`).appendTo($resCollection)
             $(`<p>`).text(`${ collectionDescription }`).appendTo($resCollection)
 
@@ -447,7 +447,7 @@ class SearchCity {
     setTimeout(() => {
       console.log(`loop `  + currentLoop)
       console.log(`index is `  + selectTheSlice)
-      $(`#bleepFx`).trigger('play').prop("volume", 0.2)
+      $(`#bleepFx`).trigger('play').prop("volume", 0.1)
       $(`.wheel-slice`).eq(selectTheSlice).toggleClass(`spin-selector`)
       $(`.wheel-slice`).eq(selectTheSlice).toggleClass(`wheel-select`)
       // $(`.circle-button`).toggleClass(`spin-selector`)
