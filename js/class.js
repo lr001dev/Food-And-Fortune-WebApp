@@ -468,20 +468,46 @@ class SearchCity {
     $(`.wheel-slice`).eq(11).toggleClass(`spin-selector`)
     $(`.wheel-slice`).eq(11).toggleClass(`wheel-select`)
   }
-    //Reset the Search & Food Fortune Wheel
+  ///////////////////////////////////
+  /// Method To Reset The Wheel /////
+  //////////////////////////////////
   resetSearch (citySearch) {
     console.log(`alert`)
+    //The following loop is purely for testing purposes
+    // for(let i = 0; i < citySearch.length; i++) {
+    //   console.log(citySearch[i].name)
+    //   console.log(citySearch[i].address)
+    // }
     //Turn of orb
     // $(`.orb`).toggleClass(`hide`)
     //Turn off click listener for beginning spin
     $(`.circle-button`).text(``).off()
+
     //Remove previous city from DOM
     $(`.city`).children().remove()
+
     //Reset sliceSelector
     $(`.wheel-slice`).removeClass(`spin-selector text-select`)
-    // $(`.circle-button-tiny`).removeClass(`spin-selector`).css(`visibility`, `hidden`)
     $(`.circle-button`).removeClass(`spin-selector`)
+
+    //Clear The Modal
+    $(`#resId-0 .res-collection`).children().remove()
+    $(`#resId-0 .res-name`).children().remove()
+    $(`#resId-0 .res-ratings`).children().remove()
+    $(`#resId-0 .res-name`).children().remove()
+    $(`#resId-0 .cuisines`).remove()
+    $(`#resId-0 .average_cost`).remove()
+    $(`#resId-0 .address`).remove()
+    $(`.wheel-slice`).children().remove()
+    $(`.center-button`).remove()
+
     //Create a new SearchCity instance
     citySearch = new SearchCity()
+    console.log(citySearch)
+    //The following loop is purely for testing purposes
+    // for(let i = 0; i < citySearch.length; i++) {
+    //   console.log(citySearch[i].name)
+    //   console.log(citySearch[i].address)
+    // }
   }
 }
