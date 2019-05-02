@@ -31,6 +31,9 @@ const createUI = (numOfSlices) => {
   $(`<button>`).attr(`id`, `modal-close`).text(`Close`)
   .appendTo($(`<div>`).attr(`id`, `modal`).appendTo(`body`))
 
+  //Create Fortune Cookike Container
+  $(`<div>`).attr(`id`, `fortune`).appendTo(`#modal`)
+
   //Create Restaurant Container Header Containers
   $(`<div>`).attr(`class`,`res-collection`).appendTo($(`<div>`).attr(`class`, `res-head`)
   .appendTo($(`<div>`).attr(`id`, `resId-0`).attr(`class`, `listings`).appendTo(`#modal`)))
@@ -196,7 +199,9 @@ const createControls = (citySearch, numOfCollections) => {
   $(`<button>`).attr(`id`, `wheelReset`).text(`Reset Wheel`).on(`click`, () => {
 
     $(`#clickFx`).trigger('play')
-   citySearch.resetSearch(citySearch) })
+   citySearch.resetSearch(citySearch)
+
+ })
     .appendTo(`.foot-mid`)
 
     ///////////////////////

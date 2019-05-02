@@ -352,6 +352,24 @@ li:nth-child(12) {
 #modal-close:hover {
   background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
 }
+#fortune {
+  margin: 2em auto;
+  width: 50%;
+  background: white;
+  padding: 1em;
+  border-radius: 2%;
+  border: 1px solid white;
+  font-size: 1.9em;
+  line-height: 1.4em;
+  color: black;
+  text-align: center;
+  border: 2px solid #fc00ff;
+  box-shadow: inset 0px 0px 4px 2px #f83600;
+}
+#fortune p {
+  line-height: 1em;
+  font-size: .8em;
+}
 .listings {
   width: 50%;
   margin: 3em auto;
@@ -376,7 +394,7 @@ li:nth-child(12) {
 }
 .res-collection p {
   padding-top: .5em;
-  font-size: 1em;
+  font-size: 1.5em;
 }
 .res-name {
   font-size: 2em;

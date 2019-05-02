@@ -10,6 +10,7 @@ class SearchCity {
     this.chosenFoodCollectionsIndexes = []
     this.foodCollectionsIDs = []
     this.myRestaurantListings = []
+    this.myFortuneCookie = ''
   }
   //////////////////////////////////////////////////////////
   /// Method Connecting To Zomato API To Find City Id /////
@@ -150,6 +151,8 @@ class SearchCity {
       console.error(error)
       alert(`No Results Found. Please Try Again.`)
     })
+
+    this.getFortuneCookie()
   }
   ////////////////////////////////////////////////////////
   /// Method Connecting To Zomato API To Find A Random ///
@@ -213,6 +216,21 @@ class SearchCity {
       console.error(error)
       alert(`No Results Found. Please Try Again.`)
     })
+  }
+  ///////////////////////////////////////////////////////
+  ////Method To Request Fortunes From Fortune Cookie API
+  //////////////////////////////////////////////////////
+
+  getFortuneCookie() {
+    $.ajax({
+      url: `http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=300&skip=&page=`
+    }).then( (fortuneCookie) => {
+      console.log(fortuneCookie[0].message)
+      this.updateInstanceFortune(fortuneCookie[0])
+    }, (error) => {
+        console.error(error)
+        alert(`No Results Found. Please Try Again.`)
+    } )
   }
   ///////////////////////////////////////////////////////////////////////////
   /// Method To Update Current SearchCity Instance With City Name & ID /////
@@ -283,8 +301,15 @@ class SearchCity {
           console.log( theLastIndex )
           //Lets Check If It's First Listing In DOM
           if(theLastIndex === 0) {
-          //Add Data To Restaurant Header
+
+          //Remove Default Message
           $(`.no-listings`).remove()
+
+          //Add Fortune
+          $(`#fortune`).append($(`<h3>`).text(`Your Fortune For The Day:`))
+          .append($(`<p>`).text(`"${ this.myFortuneCookie.message }"`))
+
+          //Add Data To Restaurant Header
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<h1>`).text(`${ collectionTitle } Collection`))
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<img>`).attr(`src`, `${ collectionImageUrl }`))
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<p>`).text(`${ collectionDescription }`))
@@ -305,7 +330,7 @@ class SearchCity {
             console.log(`this is now true`)
 
             //Create And Append New Restaurant Data To DOM
-            const $modalSelectoer = $(`#modal`)
+            const $modalSelector = $(`#modal`)
             const $resContainer = $(`<div>`).attr(`id`, ` resId-${ theLastIndex } `).attr(`class`, `listings`)
             const $resHead = $(`<div>`).attr(`class`, `res-head`).appendTo($resContainer)
             const $resBody = $(`<div>`).attr(`class`, `res-body`).appendTo($resContainer)
@@ -335,12 +360,13 @@ class SearchCity {
             $(`<p>`).text(`${ city }`).appendTo($h2Address)
             $(`<p>`).text(`${ zipCode }`).appendTo($h2Address)
 
-            $modalSelectoer.append($resContainer)
-
+            //Lets Finally Inster Into The DOM
+            $(`#fortune`).after($resContainer)
+            console.log($(`.listings`))
           }
           console.log(this.myRestaurantListings[theLastIndex])
         $(`#modal`).css(`display`, `block`)
-      $(`.orb`).toggleClass(`hide`)
+      // $(`.orb`).toggleClass(`hide`)
       console.log(`I'm The orb`)
     } , 100 *  timeDelay)
   }
@@ -374,6 +400,16 @@ class SearchCity {
     $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
     console.log(this.foodCollectionsIDs)
   }
+  /////////////////////////////////////////////////////
+  ////Updating The Instance With Fortune Cookie Message
+  /////////////////////////////////////////////////////
+
+  updateInstanceFortune (theFortuneMessage) {
+    this.myFortuneCookie = theFortuneMessage
+    console.log(`This is the fortune message: ${ theFortuneMessage }`)
+    console.log(`This is the saved fortune message: ${ this.myFortuneCookie.message }`)
+  }
+
   ///////////////////////////////////////////////////////////////////
   /// Method To Calculate Random Number Of Rotating Selections  /////
   //////////////////////////////////////////////////////////////////
@@ -467,30 +503,20 @@ class SearchCity {
     $(`.circle-button`).removeClass(`spin-selector`)
     $(`.wheel-slice`).eq(11).toggleClass(`spin-selector`)
     $(`.wheel-slice`).eq(11).toggleClass(`wheel-select`)
+    console.log(`Clearing Spin`)
   }
   ///////////////////////////////////
   /// Method To Reset The Wheel /////
   //////////////////////////////////
   resetSearch (citySearch) {
     console.log(`alert`)
-    //The following loop is purely for testing purposes
-    // for(let i = 0; i < citySearch.length; i++) {
-    //   console.log(citySearch[i].name)
-    //   console.log(citySearch[i].address)
-    // }
-    //Turn of orb
-    // $(`.orb`).toggleClass(`hide`)
-    //Turn off click listener for beginning spin
-    $(`.circle-button`).text(``).off()
-
+  $(".flex-container").load(" .flex-container");
+    // $(`#inner-wheel`).empty()
     //Remove previous city from DOM
     $(`.city`).children().remove()
 
-    //Reset sliceSelector
-    $(`.wheel-slice`).removeClass(`spin-selector text-select`)
-    $(`.circle-button`).removeClass(`spin-selector`)
-
     //Clear The Modal
+    $(`#fortune`).remove()
     $(`#resId-0 .res-collection`).children().remove()
     $(`#resId-0 .res-name`).children().remove()
     $(`#resId-0 .res-ratings`).children().remove()
@@ -498,16 +524,28 @@ class SearchCity {
     $(`#resId-0 .cuisines`).remove()
     $(`#resId-0 .average_cost`).remove()
     $(`#resId-0 .address`).remove()
-    $(`.wheel-slice`).children().remove()
-    $(`.center-button`).remove()
+    // $(`.center-button`).remove()
 
+    //Looping here to create the inner wheel elements
+    //This we will construct into selectable slices
+    // for(let i = 0; i < 12; i++) {
+    //   $(`<li>`).appendTo(`#inner-wheel`)
+    //   const $selectLiTag = $('li').eq(i)
+    //   $(`<div>`).addClass(`wheel-slice`).text(`${i}`).appendTo($selectLiTag)
+    // }
+    // //Create center of circle elements
+    // $(`<div>`).addClass(`circle-button`).appendTo(`#inner-wheel`)
+    // $(`<i>`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`).appendTo(`.circle-button`)
+    // $(`<div>`).addClass(`circle-button-small`).appendTo(`#inner-wheel`)
+    // $(`<div>`).addClass(`circle-button-tiny`).appendTo(`#inner-wheel)
+
+    // const $numOfListings = $(`.listings`)
+    // for(let i = 0; i < $numOfListings.length-1; i++){
+    //   $numOfListings[i].remove()
+    // }
     //Create a new SearchCity instance
     citySearch = new SearchCity()
+    //Is Our New Instance Fresh?
     console.log(citySearch)
-    //The following loop is purely for testing purposes
-    // for(let i = 0; i < citySearch.length; i++) {
-    //   console.log(citySearch[i].name)
-    //   console.log(citySearch[i].address)
-    // }
   }
 }
