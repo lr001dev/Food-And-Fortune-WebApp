@@ -40,7 +40,7 @@ const createUI = (numOfSlices) => {
 
   //Create Restaurant Body Container
   $(`<div>`).attr(`class`, `res-body`).appendTo(`#resId-0`)
-  
+
   //Creating H2 Tags For Later Use
   $(`<h2>`).attr(`class`, `cuisines`).appendTo(`#resId-0 .res-body`)
   $(`<h2>`).attr(`class`, `average_cost`).appendTo(`#resId-0 .res-body`)
@@ -196,7 +196,7 @@ const createControls = (citySearch, numOfCollections) => {
   $(`<button>`).attr(`id`, `wheelReset`).text(`Reset Wheel`).on(`click`, () => {
 
     $(`#clickFx`).trigger('play')
-   resetSearch(citySearch) })
+   citySearch.resetSearch(citySearch) })
     .appendTo(`.foot-mid`)
 
     ///////////////////////

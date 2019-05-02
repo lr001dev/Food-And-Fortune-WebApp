@@ -468,4 +468,20 @@ class SearchCity {
     $(`.wheel-slice`).eq(11).toggleClass(`spin-selector`)
     $(`.wheel-slice`).eq(11).toggleClass(`wheel-select`)
   }
+    //Reset the Search & Food Fortune Wheel
+  resetSearch (citySearch) {
+    console.log(`alert`)
+    //Turn of orb
+    // $(`.orb`).toggleClass(`hide`)
+    //Turn off click listener for beginning spin
+    $(`.circle-button`).text(``).off()
+    //Remove previous city from DOM
+    $(`.city`).children().remove()
+    //Reset sliceSelector
+    $(`.wheel-slice`).removeClass(`spin-selector text-select`)
+    // $(`.circle-button-tiny`).removeClass(`spin-selector`).css(`visibility`, `hidden`)
+    $(`.circle-button`).removeClass(`spin-selector`)
+    //Create a new SearchCity instance
+    citySearch = new SearchCity()
+  }
 }
