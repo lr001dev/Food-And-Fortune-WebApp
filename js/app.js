@@ -197,9 +197,9 @@ const createControls = (citySearch, numOfCollections) => {
 
   //Create button to reset the search query & wheel
   $(`<button>`).attr(`id`, `wheelReset`).text(`Reset Wheel`).on(`click`, () => {
-
     $(`#clickFx`).trigger('play')
-   citySearch.resetSearch(citySearch)
+   // citySearch.resetSearch(citySearch)
+   location.reload()
 
  })
     .appendTo(`.foot-mid`)

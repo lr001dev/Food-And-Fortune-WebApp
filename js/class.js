@@ -508,44 +508,27 @@ class SearchCity {
   ///////////////////////////////////
   /// Method To Reset The Wheel /////
   //////////////////////////////////
-  resetSearch (citySearch) {
-    console.log(`alert`)
-  $(".flex-container").load(" .flex-container");
-    // $(`#inner-wheel`).empty()
-    //Remove previous city from DOM
-    $(`.city`).children().remove()
 
-    //Clear The Modal
-    $(`#fortune`).remove()
-    $(`#resId-0 .res-collection`).children().remove()
-    $(`#resId-0 .res-name`).children().remove()
-    $(`#resId-0 .res-ratings`).children().remove()
-    $(`#resId-0 .res-name`).children().remove()
-    $(`#resId-0 .cuisines`).remove()
-    $(`#resId-0 .average_cost`).remove()
-    $(`#resId-0 .address`).remove()
-    // $(`.center-button`).remove()
-
-    //Looping here to create the inner wheel elements
-    //This we will construct into selectable slices
-    // for(let i = 0; i < 12; i++) {
-    //   $(`<li>`).appendTo(`#inner-wheel`)
-    //   const $selectLiTag = $('li').eq(i)
-    //   $(`<div>`).addClass(`wheel-slice`).text(`${i}`).appendTo($selectLiTag)
-    // }
-    // //Create center of circle elements
-    // $(`<div>`).addClass(`circle-button`).appendTo(`#inner-wheel`)
-    // $(`<i>`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`).appendTo(`.circle-button`)
-    // $(`<div>`).addClass(`circle-button-small`).appendTo(`#inner-wheel`)
-    // $(`<div>`).addClass(`circle-button-tiny`).appendTo(`#inner-wheel)
-
-    // const $numOfListings = $(`.listings`)
-    // for(let i = 0; i < $numOfListings.length-1; i++){
-    //   $numOfListings[i].remove()
-    // }
-    //Create a new SearchCity instance
-    citySearch = new SearchCity()
-    //Is Our New Instance Fresh?
-    console.log(citySearch)
-  }
+  //Couldn't get this to work
+  // resetSearch (citySearch) {
+  //   console.log(`alert`)
+  // // $(".flex-container").load(" .flex-container");
+  //   // $(`#inner-wheel`).empty()
+  //   //Remove previous city from DOM
+  //   $(`.city`).children().remove()
+  //
+  //   //Clear The Modal
+  //   $(`#fortune`).remove()
+  //   $(`#resId-0 .res-collection`).children().remove()
+  //   $(`#resId-0 .res-name`).children().remove()
+  //   $(`#resId-0 .res-ratings`).children().remove()
+  //   $(`#resId-0 .res-name`).children().remove()
+  //   $(`#resId-0 .cuisines`).remove()
+  //   $(`#resId-0 .average_cost`).remove()
+  //   $(`#resId-0 .address`).remove()
+  //   //Create a new SearchCity instance
+  //   citySearch = new SearchCity()
+  //   //Is Our New Instance Fresh?
+  //   console.log(citySearch)
+  // }
 }
