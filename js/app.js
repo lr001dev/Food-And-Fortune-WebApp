@@ -251,6 +251,14 @@ const createControls = (citySearch, numOfCollections) => {
       $(`#clickFx`).trigger('play')
       $(`#modal-intro`).css(`display`, `none`)
     })
+    /////////////////////////////////
+    /// Touch Screen Start Spin/////
+    ///////////////////////////////
+    $(`#inner-wheel`).ontouchstart((event) => {
+      citySearch.setupSpin ()
+      citySearch.spinWheel(citySearch.calculateSelections(), citySearch.rotateSelector)
+      citySearch.clearSpin()
+    })
 }
 
 $(() => {
@@ -275,9 +283,7 @@ $(`<h3>`).text(`If City is found, the wheel loads 12 Food Collections specific t
 $(`<i>`).attr(`class`, `fas fa-sync-alt`).appendTo($(`<h3>`)
 .text(`Click this icon to spin wheel & get your food fortunes: `).appendTo($startModal))
 
-$(`<h3>`).text(`Check "My Fortunes" below to see your listings`).appendTo($startModal)
-$(`<h3>`).text(`Mute music and fx`).appendTo($startModal)
-$(`<h3>`).text(`Reset the wheel while keeping your past listings`).appendTo($startModal)
+$(`<h3>`).text(`Scroll down on app for options`).appendTo($startModal)
 $(`<h3>`).text(`Start over? Simply refresh your browser`).appendTo($startModal)
 
 $(`<h2>`).text(`READY? LET'S GO FOR A SPIN!`).css(`margin-top`, `1em`).appendTo($startModal)
