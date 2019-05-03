@@ -255,7 +255,7 @@ const createControls = (citySearch, numOfCollections) => {
     /// Touch Screen Start Spin/////
     ///////////////////////////////
     $(`#inner-wheel`).ontouchstart((event) => {
-      citySearch.setupSpin ()
+      citySearch.setupSpin()
       citySearch.spinWheel(citySearch.calculateSelections(), citySearch.rotateSelector)
       citySearch.clearSpin()
     })
