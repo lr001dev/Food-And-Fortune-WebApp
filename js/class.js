@@ -18,9 +18,6 @@ class SearchCity {
 
   //Connect to Zomato API and find city
   findCity (event, getCityFoodCollections, totalCollections, theCurrentInstance) {
-    // const $doesDivExist = $(`.city div`)
-
-    // if($doesDivExist.length === 0 ) {
 
       ///////////////////////////////////
       ////Lets Build Our Ajax Call To API
@@ -68,20 +65,10 @@ class SearchCity {
         console.error(error)
         alert(`No Results Found. Please Try Again.`)
       })
-      // console.log(this.cityName)
-      //Clear previous spin
-      // this.setupSpin(this.clearSpin)
-      // this.setupSpin()
 
       //Reset Input box and prevent page refresh
       $('.head-mid form').trigger('reset')
       event.preventDefault()
-      // console.log(event)
-    // } else if ($doesDivExist.length === 0  && this.cityName === undefined ) {
-    //     alert(`Please Enter Your City To Begin Your Food Search`)
-    // } else {
-    //     alert(`Please Reset Your Seach Below`)
-    // }
   }
   ////////////////////////////////////////////////////////
   /// Method Connecting To Zomato API To Find City /////
@@ -227,14 +214,17 @@ class SearchCity {
   //////////////////////////////////////////////////////
 
   getFortuneCookie() {
+    let randomIndex = Math.floor(Math.random() * 544)
+
     $.ajax({
-      url: `https://fortunecookieapi.herokuapp.com/v1/fortunes?limit=300`
+      url: `https://fortunecookieapi.herokuapp.com/v1/fortunes?limit=544`
     }).then( (fortuneCookie) => {
-      console.log(fortuneCookie[0].message)
-      this.updateInstanceFortune(fortuneCookie[0])
+
+      console.log(`What does our fortune cookie say? ${fortuneCookie[randomIndex].message}`)
+      this.updateInstanceFortune(fortuneCookie[randomIndex])
     }, (error) => {
         console.error(error)
-        alert(`No Results Found. Please Try Again.`)
+        alert(`No Fortune Cookie Results Found. Please Try Again.`)
     } )
   }
   ///////////////////////////////////////////////////////////////////////////
@@ -261,9 +251,6 @@ class SearchCity {
 
       //Delay Listing Display For After The Wheel Is Done Spinning
       setTimeout(() => {
-        const $checkIf0 = $(`#resId-0`).attr(`data`)
-        console.log(`The Data Id is ${ $checkIf0 }`)
-
         ///////////////////////////////////
         ////Prepare Restaurant Data For DOM
         ///////////////////////////////////
@@ -365,11 +352,11 @@ class SearchCity {
             $(`<p>`).text(`${ city }`).appendTo($h2Address)
             $(`<p>`).text(`${ zipCode }`).appendTo($h2Address)
 
-            //Lets Finally Inster Into The DOM
+            //Lets Finally Instert Into The DOM
             $(`#fortune`).after($resContainer)
             console.log($(`.listings`))
           }
-          console.log(this.myRestaurantListings[theLastIndex])
+          console.log(`The Current Listing ` + this.myRestaurantListings[theLastIndex])
         $(`#fortune`).css(`visibility`, `visible`)
         $(`#modal`).css(`display`, `block`)
       // $(`.orb`).toggleClass(`hide`)
@@ -402,9 +389,7 @@ class SearchCity {
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
     $(`#pressFx02`).trigger('play').prop("volume", 0.2)
-    // $(`.circle-button`).toggleClass(`center-button`)
-    // $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
-    console.log(`These are the collection ids from the main list not the actual indexes from orginal array ` + this.foodCollectionsIDs)
+    console.log(`These are the collection ids in an array from the last api call not the indexes array ` + this.foodCollectionsIDs)
     this.setupSpin()
   }
   /////////////////////////////////////////////////////
@@ -432,7 +417,7 @@ class SearchCity {
   //Lets trigger the spin
   setupSpin () {
     const $checkCircleButton = $(`.circle-button .center-button`)
-    console.log( `The length of this array is ` + $checkCircleButton.length )
+    console.log( `Checking if button is visible, if 0 display button ` + $checkCircleButton.length )
     if($checkCircleButton.length === 0) {
       $(`.circle-button`).toggleClass(`center-button`)
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
@@ -453,7 +438,7 @@ class SearchCity {
 
   //Calculating total # of rotating selections
   spinWheel (spins, sliceSelector) {
-    console.log(spins)
+    console.log(`Total number of spins: ${ spins }`)
     //Category Ids from Zomato API
     const myArray = this.foodCollectionsIDs
     let num = ``
@@ -467,13 +452,13 @@ class SearchCity {
     }
     //(slice) Represents the chosen index of $(`.wheel-slice`) containing
     //Food Collection Category On The Wheel
-    console.log(slice)
+    console.log(`We are selcting slice# ${ slice }`)
 
     //this.foodCollectionsIDs[slice] Grabs the Food Collection ID from the array
     //The this.foodCollectionsIDs array is in the same index order as $(`.wheel-slice`)
-    console.log(this.foodCollectionsIDs[slice])
+    console.log(`Checking to see if this mataches what's currently on the wheel ${ this.foodCollectionsIDs[slice] }`)
     let winningId = this.foodCollectionsIDs[slice]
-    console.log(`The Winning Food Collection ID Before Load @ Index ${ slice }` + winningId)
+    console.log(`The Winning Food Collection ID Before Load @ Index ${ slice } with id ${ winningId }` )
     //Lets call this function and pass the above as parameters so we can make another
     //API call for this spin. We will locate and actual restaurant and display to user
     //We need varaible num here so we can sync settimeout in this.loadRestaurant()
@@ -533,16 +518,18 @@ class SearchCity {
     $(`.wheel-slice`).removeClass(`spin-selector wheel-select`)
     $(`.wheel-slice`).children().remove()
 
-    //Disable Click
+    //Disable spinWheel Click
     $(`.circle-button`).toggleClass(`center-button`)
     $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
     $(`.circle-button`).off()
-    //Reset Ids array
+
+    //Reset Ids array ... Work around, not sure yet why we have to do this here.
     this.foodCollectionsIDs = []
-  
+
     //Create a new SearchCity instance
     citySearch = new SearchCity()
-    //Is Our New Instance Fresh?
+
+    //Is Our New Instance Fresh & New?
     console.log(citySearch)
   }
 }
