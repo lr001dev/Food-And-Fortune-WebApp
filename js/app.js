@@ -152,7 +152,7 @@ const createControls = (citySearch, numOfCollections) => {
     .on(`click`, (event) => {
       $(`#clickFx`).trigger('play')
       const $doesDivExist = $(`.city div`)
-      const $inputExist = $(`#inputBox`).val()
+      let $inputExist = $(`#inputBox`).val()
       console.log($doesDivExist.length)
       if($doesDivExist.length === 0 && $inputExist === '') {
 
@@ -198,8 +198,8 @@ const createControls = (citySearch, numOfCollections) => {
   //Create button to reset the search query & wheel
   $(`<button>`).attr(`id`, `wheelReset`).text(`Reset Wheel`).on(`click`, () => {
     $(`#clickFx`).trigger('play')
-   // citySearch.resetSearch(citySearch)
-   location.reload()
+   citySearch.resetSearch(citySearch)
+   // location.reload()
 
  })
     .appendTo(`.foot-mid`)

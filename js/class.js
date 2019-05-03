@@ -71,7 +71,7 @@ class SearchCity {
       // console.log(this.cityName)
       //Clear previous spin
       // this.setupSpin(this.clearSpin)
-      this.setupSpin()
+      // this.setupSpin()
 
       //Reset Input box and prevent page refresh
       $('.head-mid form').trigger('reset')
@@ -105,25 +105,25 @@ class SearchCity {
       console.log( `The length of the Food Collections List is ` + collectionResponse.collections.length )
 
       //Lets Push All The Food Collections Objects Into This Array
-      const foodCollectionsArray = []
+      let foodCollectionsArray = []
 
       //Looping through the collectionResponse array of objects to construct our new array above
       for(let i = 0; i < collectionResponse.collections.length; i++) {
 
         //Checking To See If We Have A Result
-        console.log(`Looping Through Each Collections Object ` + collectionResponse.collections[i].collection.title)
+        console.log(`Looping Through Each Collections Object for city ${ cityID } ` + collectionResponse.collections[i].collection.title)
 
         //Lets select each collection object and push to foodCollectionsArray
         foodCollectionsArray.push(collectionResponse.collections[i].collection)
 
-        console.log( `Checking foodCollectionsArray. We should see something here ` + foodCollectionsArray )
+        console.log( `Checking New foodCollectionsArray for city ${ cityID }. We should see something here ` + foodCollectionsArray )
       }
 
       //Lets choose random indexes from our foodCollectionsArray and
       //create a new array with collectionsLimit ids
 
       //We are pushing our chosen ids from below logic to create our food collections choices
-      const chosenIndexesArray = []
+      let chosenIndexesArray = []
 
       //Lets choose random indexes from collectionResponse to create our food categories
       for(let i = 0; i < collectionsLimit; i++) {
@@ -146,6 +146,9 @@ class SearchCity {
 
       //Lets append to the DOM with chosen response
       this.createWheelFoodCategories(foodCollectionsArray, chosenIndexesArray)
+
+      foodCollectionsArray = []
+      chosenIndexesArray = []
 
     }, (error) => {
       console.error(error)
@@ -186,10 +189,10 @@ class SearchCity {
       const randomIndex = Math.floor( Math.random() * restaurantsResponse.restaurants.length )
 
       //Lets Push All The Restaurant Objects From Our Query Into restaurantsArray
-      const restaurantsArray = []
+      let restaurantsArray = []
       //Lets Push Winning Restaurant Into winningRestaurantArray
 
-      const winningRestaurantArray = []
+      let winningRestaurantArray = []
       //Looping through the restaurantsResponse array of objects to constructor are new array above
       for(let i = 0; i < restaurantsResponse.restaurants.length; i++) {
 
@@ -212,6 +215,8 @@ class SearchCity {
 
 
       this.updateInstanceRestaurant(winningRestaurantArray[0], delay, theWinningCollectionId)
+      restaurantsArray = []
+      winningRestaurantArray = []
     }, (error) => {
       console.error(error)
       alert(`No Results Found. Please Try Again.`)
@@ -397,9 +402,10 @@ class SearchCity {
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
     $(`#pressFx02`).trigger('play').prop("volume", 0.2)
-    $(`.circle-button`).toggleClass(`center-button`)
-    $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
-    console.log(this.foodCollectionsIDs)
+    // $(`.circle-button`).toggleClass(`center-button`)
+    // $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
+    console.log(`These are the collection ids from the main list not the actual indexes from orginal array ` + this.foodCollectionsIDs)
+    this.setupSpin()
   }
   /////////////////////////////////////////////////////
   ////Updating The Instance With Fortune Cookie Message
@@ -425,7 +431,12 @@ class SearchCity {
 
   //Lets trigger the spin
   setupSpin () {
-    $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
+    const $checkCircleButton = $(`.circle-button .center-button`)
+    console.log( `The length of this array is ` + $checkCircleButton.length )
+    if($checkCircleButton.length === 0) {
+      $(`.circle-button`).toggleClass(`center-button`)
+      $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
+    }
     //Create click listener for beginning spin
     $(`.circle-button`).on(`click`, () => {
       //Lets spin the wheel
@@ -461,7 +472,7 @@ class SearchCity {
     //this.foodCollectionsIDs[slice] Grabs the Food Collection ID from the array
     //The this.foodCollectionsIDs array is in the same index order as $(`.wheel-slice`)
     console.log(this.foodCollectionsIDs[slice])
-    const winningId = this.foodCollectionsIDs[slice]
+    let winningId = this.foodCollectionsIDs[slice]
     console.log(`The Winning Food Collection ID Before Load @ Index ${ slice }` + winningId)
     //Lets call this function and pass the above as parameters so we can make another
     //API call for this spin. We will locate and actual restaurant and display to user
@@ -472,6 +483,8 @@ class SearchCity {
     //Disable orb `hide` css class and display orb pop up after set interval
     setTimeout(() => {
       this.setupSpin ()
+      $(`.circle-button`).toggleClass(`center-button`)
+      $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
       // $(`.orb`).toggleClass(`hide`)
     }, 100 *  num)
   }
@@ -480,7 +493,7 @@ class SearchCity {
   ///////////////////////////////////////////////////////////////////////
 
   //Toggle classes to simulate spin in with 100ms intervals
-  rotateSelector (currentLoop,selectTheSlice,callback) {
+  rotateSelector (currentLoop,selectTheSlice) {
     setTimeout(() => {
       console.log(`loop `  + currentLoop)
       console.log(`index is `  + selectTheSlice)
@@ -500,7 +513,7 @@ class SearchCity {
   //Lets clear the css classes for the selector on the wheel
   clearSpin () {
     $(`.wheel-slice`).removeClass(`spin-selector wheel-select`)
-    $(`.circle-button-tiny`).removeClass(`spin-selector`).css(`visibility`, `none`)
+    // $(`.circle-button-tiny`).removeClass(`spin-selector`).css(`visibility`, `none`)
     $(`.circle-button`).removeClass(`spin-selector`)
     $(`.wheel-slice`).eq(11).toggleClass(`spin-selector`)
     $(`.wheel-slice`).eq(11).toggleClass(`wheel-select`)
@@ -511,25 +524,25 @@ class SearchCity {
   //////////////////////////////////
 
   //Couldn't get this to work
-  // resetSearch (citySearch) {
-  //   console.log(`alert`)
-  // // $(".flex-container").load(" .flex-container");
-  //   // $(`#inner-wheel`).empty()
-  //   //Remove previous city from DOM
-  //   $(`.city`).children().remove()
-  //
-  //   //Clear The Modal
-  //   $(`#fortune`).remove()
-  //   $(`#resId-0 .res-collection`).children().remove()
-  //   $(`#resId-0 .res-name`).children().remove()
-  //   $(`#resId-0 .res-ratings`).children().remove()
-  //   $(`#resId-0 .res-name`).children().remove()
-  //   $(`#resId-0 .cuisines`).remove()
-  //   $(`#resId-0 .average_cost`).remove()
-  //   $(`#resId-0 .address`).remove()
-  //   //Create a new SearchCity instance
-  //   citySearch = new SearchCity()
-  //   //Is Our New Instance Fresh?
-  //   console.log(citySearch)
-  // }
+  resetSearch (citySearch) {
+    console.log(`alert`)
+    //Remove previous city from DOM
+    $(`.city`).children().remove()
+
+    //Clear The Wheel
+    $(`.wheel-slice`).removeClass(`spin-selector wheel-select`)
+    $(`.wheel-slice`).children().remove()
+
+    //Disable Click
+    $(`.circle-button`).toggleClass(`center-button`)
+    $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
+    $(`.circle-button`).off()
+    //Reset Ids array
+    this.foodCollectionsIDs = []
+  
+    //Create a new SearchCity instance
+    citySearch = new SearchCity()
+    //Is Our New Instance Fresh?
+    console.log(citySearch)
+  }
 }
