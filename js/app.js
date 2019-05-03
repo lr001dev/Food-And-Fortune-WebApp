@@ -182,12 +182,22 @@ const createControls = (citySearch, numOfCollections) => {
 
       $(`#clickFx`).trigger('play')
 
-      const muteAudio = document.getElementById("musicMain")
+      const muteMusic= document.getElementById("musicMain")
+      const muteBleep = document.getElementById("bleepFx")
+      const muteFx01 = document.getElementById("pressFx01")
+      const muteFx02 = document.getElementById("pressFx02")
 
-      if( muteAudio.muted !== true) {
-          muteAudio.muted = true
+      if( muteMusic.muted !== true) {
+          muteMusic.muted = true
+          muteBleep.muted = true
+          muteFx01.muted = true
+          muteFx02.muted = true
+
       } else {
-          muteAudio.muted = false
+          muteMusic.muted = false
+          muteBleep.muted = false
+          muteFx01.muted = false
+          muteFx02.muted = false
       } })
     .appendTo(`.foot-left`)
 
