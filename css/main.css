@@ -323,7 +323,7 @@ li:nth-child(12) {
   color: ghostwhite;
   transform: scale(.9);
 }
-#modal {
+#modal, #modal-intro {
 	display: none;
 	background-color: rgba(0,0,0,0.4);
 	position: fixed;
@@ -337,7 +337,7 @@ li:nth-child(12) {
 	overflow:auto;
   transition-duration: 2s
 }
-#modal-close {
+#modal-close, #modal-close-intro {
   width: 100%;
   font-family: 'Orbitron';
   text-align: center;
@@ -347,10 +347,12 @@ li:nth-child(12) {
 	border-radius: 3px;
 	cursor: pointer;
   color: ghostwhite;
-  background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+
 }
 #modal-close:hover {
-  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+  background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+  /* background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%); */
 }
 #fortune {
   margin: 2em auto;
@@ -370,7 +372,7 @@ li:nth-child(12) {
   line-height: 1em;
   font-size: .8em;
 }
-.listings {
+.listings, .intro-modal {
   width: 50%;
   margin: 3em auto;
   background-color: white;
@@ -378,6 +380,22 @@ li:nth-child(12) {
   border-radius: 1%;
   border: 5px solid #fc00ff;
 }
+.intro-modal {
+  text-align: center;
+  vertical-align: middle;
+}
+.intro-modal h2 {
+  text-decoration: underline;
+  padding-bottom: 1em;
+}
+.intro-modal h3 {
+  padding: .5em;
+}
+
+.intro-modal p {
+  font-size: 1em;
+}
+
 .res-head {
   display: flex;
   border-bottom: 1px solid black;

@@ -51,6 +51,13 @@ const createUI = (numOfSlices) => {
 
   //Create our orb pop up element for restaurant display
   $(`<div>`).addClass(`orb`).appendTo(`#modal`)
+
+  //Create Intro Modal On Page Load
+  $(`<button>`).attr(`id`, `modal-close-intro`).text(`Close`)
+    .appendTo($(`<div>`).attr(`id`, `modal-intro`).appendTo(`body`))
+
+  $(`<div>`).attr(`class`, `intro-modal`).appendTo(`#modal-intro`)
+
   //////////////////////////////////////
   /// Creating Back Text Elements /////
   ////////////////////////////////////
@@ -236,6 +243,14 @@ const createControls = (citySearch, numOfCollections) => {
       $(`#clickFx`).trigger('play')
       $(`#modal`).css(`display`, `none`)
     })
+
+    /////////////////////////////
+    /// Modal Intro Control/////
+    ///////////////////////////
+    $(`#modal-close-intro`).on(`click`, () => {
+      $(`#clickFx`).trigger('play')
+      $(`#modal-intro`).css(`display`, `none`)
+    })
 }
 
 $(() => {
@@ -245,6 +260,31 @@ let citySearch = new SearchCity()
 const totalSlices = 12
 createUI(totalSlices)
 createControls(citySearch, totalSlices)
+const $startModal = $(`#modal-intro div`)
 
+$(`<h2>`).text(`Welcome to Food and Fortune`).appendTo($startModal)
+
+$(`<p>`).text(`Don't know where to eat? Spin the Food And Fortune Wheel!`)
+.css(`padding-bottom`, `1em`).appendTo($startModal)
+
+$(`<h3>`).text(`Load City ex: Denver, CO`).appendTo($startModal)
+
+$(`<h3>`).text(`If City is found, the wheel loads 12 Food Collections specific to your city`)
+.appendTo($startModal)
+
+$(`<i>`).attr(`class`, `fas fa-sync-alt`).appendTo($(`<h3>`)
+.text(`Click this icon to spin wheel & get your food fortunes: `).appendTo($startModal))
+
+$(`<h3>`).text(`Check "My Fortunes" below to see your listings`).appendTo($startModal)
+$(`<h3>`).text(`Mute music and fx`).appendTo($startModal)
+$(`<h3>`).text(`Reset the wheel while keeping your past listings`).appendTo($startModal)
+$(`<h3>`).text(`Start over? Simply refresh your browser`).appendTo($startModal)
+
+$(`<h2>`).text(`READY? LET'S GO FOR A SPIN!`).css(`margin-top`, `1em`).appendTo($startModal)
+$(`<p>`).text(`Click "Close" above to begin`).appendTo($startModal)
+
+$startModal.appendTo(`#modal-intro`)
+
+$(`#modal-intro`).css(`display`, `block`)
 
 })
