@@ -298,11 +298,13 @@ class SearchCity {
           $(`.no-listings`).remove()
 
           //Add Fortune
-          $(`#fortune`).css(`visibility`, `hidden`).append($(`<h3>`).text(`Your Fortune For The Day:`))
+          $(`#fortune`).css(`visibility`, `hidden`).append($(`<h3>`).text(`Your Fortune Cookie:`))
           .append($(`<p>`).text(`"${ this.myFortuneCookie.message }"`))
 
           //Add Data To Restaurant Header
-          $(`#resId-${ theLastIndex } .res-collection`).append($(`<h1>`).text(`${ collectionTitle } Collection`))
+          $(`#resId-${ theLastIndex } .res-collection`).append($(`<h1>`)
+            .text(`${ collectionTitle } Collection in ${ city }`))
+
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<img>`).attr(`src`, `${ collectionImageUrl }`))
           $(`#resId-${ theLastIndex } .res-collection`).append($(`<p>`).text(`${ collectionDescription }`))
           $(`#resId-${ theLastIndex } .res-name`).append($(`<h1>`).text(`${ name }`))
@@ -312,7 +314,10 @@ class SearchCity {
 
           //Add Data To Restaurant Body
           $(`#resId-${ theLastIndex } .cuisines`).text(`Cuisines:`).append($(`<p>`).text(`${ cuisines  }`))
-          $(`#resId-${ theLastIndex } .average_cost`).text(`Average Cost For 2:`).append($(`<p>`).text(`${ averageCost  }`))
+
+          $(`#resId-${ theLastIndex } .average_cost`)
+          .text(`Average Cost For 2:`).append($(`<p>`).text(`${ averageCost  }`))
+
           $(`#resId-${ theLastIndex } .address`).text(`Address:`).append($(`<p>`).text(`${ address }`))
           $(`<p>`).text(`${ locality }`).appendTo(`.address`)
           $(`<p>`).text(`${ city }`).appendTo(`.address`)
@@ -328,7 +333,7 @@ class SearchCity {
             const $resBody = $(`<div>`).attr(`class`, `res-body`).appendTo($resContainer)
 
             const $resCollection = $(`<div>`).attr(`class`, `res-collection`).appendTo($resHead)
-            $(`<h1>`).text(`${ collectionTitle } Collection`).appendTo($resCollection)
+            $(`<h1>`).text(`${ collectionTitle } Collection in ${ city }`).appendTo($resCollection)
             $(`<img>`).attr(`src`, `${ collectionImageUrl }`).appendTo($resCollection)
             $(`<p>`).text(`${ collectionDescription }`).appendTo($resCollection)
 
