@@ -58,6 +58,14 @@ https://trello.com/invite/b/sK7Au91i/e4be659f95847372cd717149e8fc3e6b/sei-food-f
 
 ![Screenshot](img/listing_mobile.png)
 
+# Road Map
+1-Add Geo Location capability to lock user's location
+2-Allow user to additionally select food collection to filter their spin
+3-Integrate additional restaurant apis to add more variety
+4-Add capability for user to add their zodiac
+5-Display user's current astrology reading
+6-Allow user to filter search restaurant/selections/menus by their zodiac
+
 # Demo
 
 https://lr001dev.github.io/Food-And-Fortune-WebApp/
