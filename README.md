@@ -17,7 +17,7 @@ HTML5, CSS, Javascript, Jquery, touchmove event listener, Zomato API, Fortune Co
 3-Reset Wheel triggers unwanted actions if user clicks before loading a new city. Works fine after the fact.
 
 # Solve
-Must create logic to handle these cases to inform the user what has happened.
+Must create logic to handle these cases.
 
 In case #1, we can replace the missing Food Collections with more general food categories that aren't specific to a city that is available through the Zomato API.
 
