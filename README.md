@@ -42,7 +42,7 @@ https://trello.com/invite/b/sK7Au91i/e4be659f95847372cd717149e8fc3e6b/sei-food-f
 
 //////Automatic Modal Pop Up Show Restaurant Listing////////////
 
-![Screenshot](img/FoodFortune_ModalPopIntro.png)
+![Screenshot](img/FoodFortune_ModalShowListing.png)
 ![Screenshot](img/listing.png)
 
 
