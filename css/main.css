@@ -580,7 +580,7 @@ li:nth-child(12) {
     font-size: 1.5em;
   }
   .wheel-slice p {
-    font-size: .1em !important;
+    font-size: .9em !important;
   }
   .wheel-image  img {
     width: 2.1em !important;
@@ -669,7 +669,6 @@ li:nth-child(12) {
   }
   .wheel-slice p {
     margin-top: -1.5em;
-    font-size:
   }
   .wheel-image {
     margin-top: 0;
