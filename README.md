@@ -20,10 +20,6 @@ Must create logic to handle these cases to inform the user what has happened. In
 # Workflow on Trello:
 https://trello.com/invite/b/sK7Au91i/e4be659f95847372cd717149e8fc3e6b/sei-food-fortune
 
-# Demo
-
-https://lr001dev.github.io/Food-And-Fortune-WebApp/
-
 # Wireframes
 
 ////// Intro Modal Pop Up On Page Load /////
@@ -40,3 +36,7 @@ https://lr001dev.github.io/Food-And-Fortune-WebApp/
 
 ![Screenshot](img/FoodFortune_ModalPopIntro.png)
 ![Screenshot](img/main.png)
+
+# Demo
+
+https://lr001dev.github.io/Food-And-Fortune-WebApp/
