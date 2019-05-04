@@ -651,6 +651,9 @@ li:nth-child(12) {
   button {
     font-size: 1.6em;
   }
+  .res-collection h1 {
+    font-size: 1.5em;
+  }
   #back-text-1 {
     top: 7.8em;
     left: 3.9em;
@@ -766,7 +769,7 @@ li:nth-child(12) {
 }
 @media only screen and (max-width: 360px) and (max-height: 740px)  {
   main {
-    height: 30em;
+    height: 32.8em;
   }
   button {
     font-size: 1.3em;

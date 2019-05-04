@@ -438,11 +438,11 @@ class SearchCity {
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
     })
     //Create Touch Screen Listener
-    $(`#inner-wheel`).bind(`touchstart`, (event) => {
+    $(`#inner-wheel`).bind(`touchmove`, (event) => {
       $(`#pressFx01`).trigger('play').prop("volume", 0.2)
       this.spinWheel(this.calculateSelections(), this.rotateSelector)
       this.clearSpin()
-      $(`#inner-wheel`).unbind(`touchstart`)
+      $(`#inner-wheel`).unbind(`touchmove`)
       $(`.circle-button`).off(`click`)
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
     })
