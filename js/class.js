@@ -426,6 +426,7 @@ class SearchCity {
     if($checkCircleButton.length === 0) {
       $(`.circle-button`).toggleClass(`center-button`)
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `visible`)
+      $(`.swipe`).css(`visibility`, `visible`)
     }
     //Create click listener for beginning spin
     $(`.circle-button`).on(`click`, () => {
@@ -434,17 +435,21 @@ class SearchCity {
       this.spinWheel(this.calculateSelections(),this.rotateSelector)
       this.clearSpin()
       $(`.circle-button`).off(`click`)
-      $(`#inner-wheel`).unbind(`touchstart`)
+      $(`.text-swipe`).unbind(`touchstart`)
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
+      $(`.swipe`).css(`visibility`, `hidden`)
     })
-    //Create Touch Screen Listener
-    $(`#inner-wheel`).bind(`touchmove`, (event) => {
+    /////////////////////////////////
+    /// Touch Screen Start Spin/////
+    ///////////////////////////////
+    $(`.text-swipe`).bind(`touchmove`, (event) => {
       $(`#pressFx01`).trigger('play').prop("volume", 0.2)
       this.spinWheel(this.calculateSelections(), this.rotateSelector)
       this.clearSpin()
-      $(`#inner-wheel`).unbind(`touchmove`)
+      $(`.text-swipe`).unbind(`touchmove`)
       $(`.circle-button`).off(`click`)
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
+      $(`.swipe`).css(`visibility`, `hidden`)
     })
   }
   /////////////////////////////////////////////////////

@@ -86,6 +86,11 @@ const createUI = (numOfSlices) => {
   //Create our outter wheel element
   $(`<ul>`).attr(`id`, `outter-wheel`).addClass(`the-wheel`).appendTo(`.flex-container`)
 
+  $(`<div>`).addClass(`swipe-container`).appendTo(`.flex-container`)
+  $(`<div>`).addClass(`swipe`).css(`background`, `rgba(0, 0, 0, 0.5)`).css(`padding`, `1em`)
+  .css(`border-radius`, `1em`).css(`visibility`, `hidden`).appendTo(`.swipe-container`)
+  $(`<h3>`).addClass(`text-swipe`).text(`Swipe here to spin`).css(`color`, `ghostwhite`).appendTo(`.swipe`)
+
   ///////////////////////////////////
   /// Creating Footer Elements /////
   /////////////////////////////////
@@ -251,14 +256,6 @@ const createControls = (citySearch, numOfCollections) => {
       $(`#clickFx`).trigger('play')
       $(`#modal-intro`).css(`display`, `none`)
     })
-    /////////////////////////////////
-    /// Touch Screen Start Spin/////
-    ///////////////////////////////
-    // $(`#inner-wheel`).bind(`touchstart`, (event) => {
-    //   citySearch.setupSpin()
-    //   citySearch.spinWheel(citySearch.calculateSelections(), citySearch.rotateSelector)
-    //   citySearch.clearSpin()
-    // })
 }
 
 $(() => {
