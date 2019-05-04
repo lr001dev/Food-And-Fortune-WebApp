@@ -16,6 +16,8 @@ HTML5, CSS, Javascript, Jquery, touchmove event listener, Zomato API, Fortune Co
 
 3-Reset Wheel triggers unwanted actions if user clicks before loading a new city. Works fine after the fact.
 
+4-If user hits enter when loading city instead of clicking the button the page refreshes instead of registering the input.
+
 # Solve
 Must create logic to handle these cases.
 
@@ -24,6 +26,8 @@ In case #1, we can replace the missing Food Collections with more general food c
 In case #2, prompting the user that there was a miss or making an additional API call under the radar to find a backup selection.
 
 In case #3, Restructure #wheelReset event listener to be setup within the class SearchCity within the createWheelFoodCategories method by using bind/unbind jquery methods to enable or disable click at appropriate time.
+
+In case #4, revisit the event.Default() on the form and troubleshoot the event bubbling.
 
 # Workflow on Trello:
 https://trello.com/invite/b/sK7Au91i/e4be659f95847372cd717149e8fc3e6b/sei-food-fortune
