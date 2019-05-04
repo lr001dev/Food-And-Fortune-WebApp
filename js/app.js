@@ -254,11 +254,11 @@ const createControls = (citySearch, numOfCollections) => {
     /////////////////////////////////
     /// Touch Screen Start Spin/////
     ///////////////////////////////
-    $(`#inner-wheel`).bind(`touchstart`, (event) => {
-      citySearch.setupSpin()
-      citySearch.spinWheel(citySearch.calculateSelections(), citySearch.rotateSelector)
-      citySearch.clearSpin()
-    })
+    // $(`#inner-wheel`).bind(`touchstart`, (event) => {
+    //   citySearch.setupSpin()
+    //   citySearch.spinWheel(citySearch.calculateSelections(), citySearch.rotateSelector)
+    //   citySearch.clearSpin()
+    // })
 }
 
 $(() => {
