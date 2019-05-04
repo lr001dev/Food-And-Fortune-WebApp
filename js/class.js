@@ -394,6 +394,7 @@ class SearchCity {
       // console.log(this.foodCollections[this.chosenFoodCollectionsIndexes[i]])
     }
     $(`#pressFx02`).trigger('play').prop("volume", 0.2)
+    // $(`#wheelReset`).bind(`click`)
     // console.log(`These are the collection ids in an array from the last api call not the indexes array ` + this.foodCollectionsIDs)
     this.setupSpin()
   }
@@ -435,7 +436,7 @@ class SearchCity {
       this.spinWheel(this.calculateSelections(),this.rotateSelector)
       this.clearSpin()
       $(`.circle-button`).off(`click`)
-      $(`.swipe`).unbind(`touchstart`)
+      $(`.swipe`).unbind(`touchmove`)
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
       $(`.swipe`).css(`visibility`, `hidden`)
     })
@@ -541,10 +542,11 @@ class SearchCity {
     //Disable spinWheel Click
     $(`.circle-button`).toggleClass(`center-button`)
     $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
-    $(`.swipe`).css(`visibility`, `hidden`)
+    $(`.swipe-container`).css(`visibility`, `hidden`)
     $(`.circle-button`).off()
     $(`.swipe`).unbind(`touchmove`)
-    
+    // $(`#wheelReset`).unbind(`click`)
+
     //Reset Ids array ... Work around, not sure yet why we have to do this here.
     this.foodCollectionsIDs = []
 
