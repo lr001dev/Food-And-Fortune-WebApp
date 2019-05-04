@@ -27,15 +27,27 @@ https://trello.com/invite/b/sK7Au91i/e4be659f95847372cd717149e8fc3e6b/sei-food-f
 ![Screenshot](img/FoodFortune_ModalPopIntro.png)
 ![Screenshot](img/intro.png)
 
+////// On Mobile /////
+
+![Screenshot](img/intro_mobile.png)
+
 ////// App Main View /////
 
 ![Screenshot](img/FoodFortuneRevised.png)
 ![Screenshot](img/listing.png)
 
+////// On Mobile /////
+
+![Screenshot](img/main_mobile.png)
+
 //////Automatic Modal Pop Up Show Restaurant Listing////////////
 
 ![Screenshot](img/FoodFortune_ModalPopIntro.png)
 ![Screenshot](img/main.png)
+
+////// On Mobile /////
+
+![Screenshot](img/Listing_mobile.png)
 
 # Demo
 
