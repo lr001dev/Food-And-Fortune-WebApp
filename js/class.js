@@ -442,11 +442,11 @@ class SearchCity {
     /////////////////////////////////
     /// Touch Screen Start Spin/////
     ///////////////////////////////
-    $(`.text-swipe`).bind(`touchmove`, (event) => {
+    $(`.swipe`).bind(`touchmove`, (event) => {
       $(`#pressFx01`).trigger('play').prop("volume", 0.2)
       this.spinWheel(this.calculateSelections(), this.rotateSelector)
       this.clearSpin()
-      $(`.text-swipe`).unbind(`touchmove`)
+      $(`.swipe`).unbind(`touchmove`)
       $(`.circle-button`).off(`click`)
       $(`i`).attr(`class`, `fas fa-sync-alt`).css(`visibility`, `hidden`)
       $(`.swipe`).css(`visibility`, `hidden`)
