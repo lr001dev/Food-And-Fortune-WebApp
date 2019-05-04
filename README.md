@@ -30,12 +30,14 @@ https://lr001dev.github.io/Food-And-Fortune-WebApp/
 //////On Page Load//////////
 
 ![Screenshot](img/FoodFortune_ModalPopIntro.png)
+![Screenshot](img/intro.png)
 
 //////App Main View /////
 
 ![Screenshot](img/FoodFortuneRevised.png)
-
+![Screenshot](img/listing.png)
 //////Automatic Modal Pop Up////////////
 //////Show Restaurant Listing //////////
 
 ![Screenshot](img/FoodFortune_ModalPopIntro.png)
+![Screenshot](img/main.png)
