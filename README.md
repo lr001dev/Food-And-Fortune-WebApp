@@ -34,7 +34,7 @@ https://trello.com/invite/b/sK7Au91i/e4be659f95847372cd717149e8fc3e6b/sei-food-f
 ////// App Main View /////
 
 ![Screenshot](img/FoodFortuneRevised.png)
-![Screenshot](img/listing.png)
+![Screenshot](img/main.png)
 
 ////// On Mobile /////
 
@@ -43,11 +43,12 @@ https://trello.com/invite/b/sK7Au91i/e4be659f95847372cd717149e8fc3e6b/sei-food-f
 //////Automatic Modal Pop Up Show Restaurant Listing////////////
 
 ![Screenshot](img/FoodFortune_ModalPopIntro.png)
-![Screenshot](img/main.png)
+![Screenshot](img/listing.png)
+
 
 ////// On Mobile /////
 
-![Screenshot](img/Listing_mobile.png)
+![Screenshot](img/listing_mobile.png)
 
 # Demo
 
