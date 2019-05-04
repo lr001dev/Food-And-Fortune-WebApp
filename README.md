@@ -2,7 +2,7 @@
 
 Food And Fortune is a random restaurant chooser application based on specialized food collections specific to a city. The app is based on the Zomato Restaurant and Fortune Cookie API. Users load a city and receive random selections of restaurants to guide them to their next food destination. The app also displays 1 Fortune from the Fortune Cookie API with each search.
 
-Spin the Food Fortune wheel and be shown your future fortune and eating spot!
+Spin the Food And Fortune Wheel and be shown your future fortune and eating spot!
 
 # Technologies Used:
 
