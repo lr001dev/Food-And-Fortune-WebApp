@@ -448,7 +448,7 @@ li:nth-child(12) {
   padding: 5px;
 }
 .swipe-container {
-  visibility: hidden;
+  display: none;
 }
 @media screen and (max-width: 1274px) {
   footer {
@@ -496,7 +496,7 @@ li:nth-child(12) {
     font-size: 1.8em;
   }
   .swipe-container {
-    visibility: visible;
+    display: block;
   }
   #back-text-1 {
     top: 5em;
