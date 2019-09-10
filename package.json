@@ -1,0 +1,24 @@
+{
+  "name": "foodfortune-webapp",
+  "version": "1.0.0",
+  "description": "Food And Fortune is a random restaurant chooser application based on specialized food collections specific to a city. The app is based on the Zomato Restaurant and Fortune Cookie API. Users load a city and receive random selections of restaurants to guide them to their next food destination. The app also displays 1 Fortune from the Fortune Cookie API with each search.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lr001dev/FoodFortune-WebApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lr001dev/FoodFortune-WebApp/issues"
+  },
+  "homepage": "https://github.com/lr001dev/FoodFortune-WebApp#readme"
+}
