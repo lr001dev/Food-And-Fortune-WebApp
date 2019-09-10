@@ -2,7 +2,7 @@ const express = require(`express`)
 const app = express()
 const port = 3001
 
-app.use('/static', express.static('public'))
+app.use(express.static(`public`))
 
 app.get(`/`, (req,res) => {
 
